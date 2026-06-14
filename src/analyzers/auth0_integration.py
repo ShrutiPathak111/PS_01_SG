@@ -1,25 +1,4 @@
-"""
-auth0_integration.py
-====================
-Real Auth0 Management API Integration
-======================================
 
-Auth0 is an enterprise identity platform (like Okta).
-The Management API gives us: users, logs, roles, connections.
-
-Credentials from your Auth0 dashboard:
-  Domain:        dev-nyszo0u2qvsxv1yw.us.auth0.com
-  Client ID:     icS6RlWVo1jMwoLnf1IsqlHov25cuDlA
-  Client Secret: c2mh5dYs_-q82w8DdwjJ5yyvLxr1dCzesbEwaBjqvSr3yRn_61MeMZ-olKrEIOyJ
-
-Set these environment variables before running main.py:
-  Windows PowerShell:
-    $env:AUTH0_DOMAIN="dev-nyszo0u2qvsxv1yw.us.auth0.com"
-    $env:AUTH0_CLIENT_ID="icS6RlWVo1jMwoLnf1IsqlHov25cuDlA"
-    $env:AUTH0_CLIENT_SECRET="c2mh5dYs_-q82w8DdwjJ5yyvLxr1dCzesbEwaBjqvSr3yRn_61MeMZ-olKrEIOyJ"
-
-Compatible with Python 3.8+
-"""
 from __future__ import annotations
 
 import os
@@ -36,9 +15,9 @@ except ImportError:
 
 # ── Credentials ───────────────────────────────────────────────────────────────
 
-AUTH0_DOMAIN        = "dev-nyszo0u2qvsxv1yw.us.auth0.com"
-AUTH0_CLIENT_ID     = "icS6RlWVo1jMwoLnf1IsqlHov25cuDlA"
-AUTH0_CLIENT_SECRET = "c2mh5dYs_-q82w8DdwjJ5yyvLxr1dCzesbEwaBjqvSr3yRn_61MeMZ-olKrEIOyJ"
+AUTH0_DOMAIN        = ...
+AUTH0_CLIENT_ID     = ...
+AUTH0_CLIENT_SECRET = ...
 AUTH0_AUDIENCE      = "https://{}/api/v2/".format(AUTH0_DOMAIN)
 
 _token_cache = {"token": None, "expires_at": 0}
