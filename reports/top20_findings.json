@@ -1,0 +1,997 @@
+{
+  "findings": [
+    {
+      "user_id": "USR00003",
+      "username": "sanjana.li",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Marketing (Director) holds access to critical identity systems: AWS_IAM. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Marketing (Director) holds access to critical identity systems: AWS_IAM. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to AWS_IAM unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "3 export events (3 on high-sensitivity resources including Customer_Vault, GL_System, HRIS) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_RESOURCE_ACCESS",
+          "details": "Standard user accessed 5 high-sensitivity resources outside Marketing scope: PROD_DB, Customer_Vault, HRIS",
+          "severity": "MEDIUM",
+          "recommendation": "Verify business justification; raise access review ticket; review entitlements",
+          "compliance_refs": [
+            "NIST AC-3",
+            "ISO 27001 A.9.1"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to AWS_IAM unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "The Director of Marketing, sanjana.li, presents a significant business risk as they have been inactive for 13 days while still holding access to critical systems such as AWS_IAM and Active Directory, indicating a potential lack of oversight or management. Furthermore, their standard user privileges grant excessive access to sensitive data, allowing potentially malicious activity such as bulk data exports and unauthorized resource access in systems like PROD_DB and Customer_Vault, posing a substantial threat to customer data integrity and regulatory compliance."
+    },
+    {
+      "user_id": "USR00004",
+      "username": "diya.anderson",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Marketing (Administrator) holds access to critical identity systems: AWS_IAM. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Marketing (Administrator) holds access to critical identity systems: AWS_IAM. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to AWS_IAM unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "AFTER_HOURS_HIGH_RISK",
+          "details": "2 high-risk action(s) on sensitive resources during off-hours (GL_System, PROD_DB) \u2014 possible unauthorized access or compromised account",
+          "severity": "HIGH",
+          "recommendation": "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+          "compliance_refs": [
+            "NIST AU-12",
+            "GDPR Art.32",
+            "ISO 27001 A.12.4"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_RESOURCE_ACCESS",
+          "details": "Standard user accessed 7 high-sensitivity resources outside Marketing scope: PROD_DB, Customer_Vault, HRIS",
+          "severity": "MEDIUM",
+          "recommendation": "Verify business justification; raise access review ticket; review entitlements",
+          "compliance_refs": [
+            "NIST AC-3",
+            "ISO 27001 A.9.1"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to AWS_IAM unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "The risk associated with the account \"diya.anderson\" is significant due to its elevated access to critical identity systems, AWS_IAM, as well as its access to sensitive resources in other departments, such as PROD_DB and Customer_Vault, from the Marketing department. This excessive access, combined with a lack of activity in 14 days, suggests potential unauthenticated access to sensitive data and systems during off-hours. If this account is compromised, it could result in unauthorized access to business-critical data and systems, exposing Societe Generale's customers and intellectual property to significant risk and reputational damage."
+    },
+    {
+      "user_id": "USR00010",
+      "username": "jacob.patel",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Marketing (Architect) holds access to critical identity systems: PROD_DB, ADMIN_SYS. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Marketing (Architect) holds access to critical identity systems: PROD_DB, ADMIN_SYS. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to PROD_DB, ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "SOD_VIOLATION",
+          "details": "Holds conflicting access pair [PROD_DB + ADMIN_SYS] \u2014 this violates separation of duties. With PROD_DB access, the user can modify data; with ADMIN_SYS, they can alter audit logs that would record those modifications, creating an undetectable fraud pathway. Violates NIST AC-5, SOX Sec.404, and PCI-DSS Req.6.4.",
+          "severity": "HIGH",
+          "recommendation": "Remove access to one of (PROD_DB, ADMIN_SYS) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+          "compliance_refs": [
+            "NIST AC-5",
+            "SOX Sec.404",
+            "PCI-DSS Req.6.4"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "2 export events (2 on high-sensitivity resources including HRIS, Customer_Vault) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to PROD_DB, ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Remove access to one of (PROD_DB, ADMIN_SYS) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "An account flagged as high-risk due to jacob.patel, a Marketing Architect, holding critical access to systems like PROD_DB and ADMIN_SYS, where they've also performed sensitive bulk data exports and accessed resources outside their department scope. This privileged access, combined with 1 day of inactivity, increases the likelihood of unauthorized actions or data breaches, posing a significant threat to our customer data and confidential business information. Compromise of this account could lead to major business disruption, damage to our reputation, and significant financial losses."
+    },
+    {
+      "user_id": "USR00014",
+      "username": "david.thomas",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Support (Architect) holds access to critical identity systems: ADMIN_SYS. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Support (Architect) holds access to critical identity systems: ADMIN_SYS. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "AFTER_HOURS_HIGH_RISK",
+          "details": "2 high-risk action(s) on sensitive resources during off-hours (GL_System) \u2014 possible unauthorized access or compromised account",
+          "severity": "HIGH",
+          "recommendation": "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+          "compliance_refs": [
+            "NIST AU-12",
+            "GDPR Art.32",
+            "ISO 27001 A.12.4"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_RESOURCE_ACCESS",
+          "details": "Standard user accessed 1 high-sensitivity resources outside Support scope: PROD_DB",
+          "severity": "MEDIUM",
+          "recommendation": "Verify business justification; raise access review ticket; review entitlements",
+          "compliance_refs": [
+            "NIST AC-3",
+            "ISO 27001 A.9.1"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "David Thomas, a Support Department Architect, poses a significant business risk due to his elevated access to critical identity systems, including ADMIN_SYS, without a valid justification for these elevated privileges. His actions on sensitive resources during off-hours, specifically on GL_System, raise concerns about potential unauthorized activity, which could lead to data breaches and financial losses for the company. As a result, David's inactivity for 2 days has not mitigated the risk, underscoring the need for a thorough review of his account. If compromised, his access to ADMIN_SYS could grant malicious actors unfettered access to sensitive systems, jeopardizing the confidentiality, integrity, and availability of our identity data, ultimately threatening our reputation and compliance posture."
+    },
+    {
+      "user_id": "USR00022",
+      "username": "harsh.patel",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "User account inactive 52 days \u2014 activity pattern suggests disuse or role change. Stale accounts pose risk if credentials are compromised without detection.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "User account inactive 52 days \u2014 activity pattern suggests disuse or role change. Stale accounts pose risk if credentials are compromised without detection.",
+          "severity": "LOW",
+          "recommendation": "Verify with manager if still required; disable if inactive for business reason; clean up access entitlements during next quarterly review",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Legal (Specialist) holds access to critical identity systems: ADMIN_SYS. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "SOD_VIOLATION",
+          "details": "Holds conflicting access pair [Okta + ADMIN_SYS] \u2014 this violates separation of duties. With Okta access, the user can modify data; with ADMIN_SYS, they can alter audit logs that would record those modifications, creating an undetectable fraud pathway. Violates NIST AC-5, SOX Sec.404, and PCI-DSS Req.6.4.",
+          "severity": "HIGH",
+          "recommendation": "Remove access to one of (Okta, ADMIN_SYS) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+          "compliance_refs": [
+            "NIST AC-5",
+            "SOX Sec.404",
+            "PCI-DSS Req.6.4"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Remove access to one of (Okta, ADMIN_SYS) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "The flagged harsh.patel account is excessively risky as it has been inactive for 52 days, indicating potential role changes or disuse, yet still holds critical administrative privileges on the ADMIN_SYS and Okta systems. This poses a significant threat to our identity management and sensitive data if the account falls into unauthorized hands, potentially allowing an attacker to manipulate user credentials and breach high-security areas like the Customer_Vault. If compromised, this could result in substantial financial losses, regulatory fines, and reputational damage to Societe Generale."
+    },
+    {
+      "user_id": "USR00023",
+      "username": "isha.jones",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Power User account inactive 55 days (25d beyond the 30d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 3 system(s) amplifies the blast radius.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "Power User account inactive 55 days (25d beyond the 30d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 3 system(s) amplifies the blast radius.",
+          "severity": "HIGH",
+          "recommendation": "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "NO_MFA_PRIVILEGED",
+          "details": "power-user account has no MFA-capable system (Okta/Azure_AD) in access list \u2014 admin actions unprotected by second factor",
+          "severity": "HIGH",
+          "recommendation": "Enroll in Okta or Azure AD MFA immediately; block privileged actions until enrolled",
+          "compliance_refs": [
+            "NIST IA-2",
+            "NIST IA-5",
+            "PCI-DSS Req.8.3"
+          ]
+        },
+        {
+          "finding": "SOD_VIOLATION",
+          "details": "Holds conflicting access pair [SIEM + AD] \u2014 this violates separation of duties. With SIEM access, the user can modify data; with AD, they can alter audit logs that would record those modifications, creating an undetectable fraud pathway. Violates NIST AC-5, SOX Sec.404, and PCI-DSS Req.6.4.",
+          "severity": "HIGH",
+          "recommendation": "Remove access to one of (SIEM, AD) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+          "compliance_refs": [
+            "NIST AC-5",
+            "SOX Sec.404",
+            "PCI-DSS Req.6.4"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+        "Enroll in Okta or Azure AD MFA immediately; block privileged actions until enrolled",
+        "Remove access to one of (SIEM, AD) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "This Director's account is excessively high-risk as it has been inactive for 55 days, leaving our systems vulnerable to potential security breaches. With privileged access to critical systems such as SIEM and AD, lack of MFA protection, and separation of duties violations, a compromised account could lead to malicious activity, potentially disrupting access to sensitive financial data, including our General Ledger System, and compromising our Email Archive. If this account is exploited, it could result in significant business disruption and potentially result in regulatory non-compliance."
+    },
+    {
+      "user_id": "USR00026",
+      "username": "stephen.bhat",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Finance (Director) holds access to critical identity systems: ADMIN_SYS, PROD_DB. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Finance (Director) holds access to critical identity systems: ADMIN_SYS, PROD_DB. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to ADMIN_SYS, PROD_DB unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "SOD_VIOLATION",
+          "details": "Holds conflicting access pair [PROD_DB + ADMIN_SYS] \u2014 this violates separation of duties. With PROD_DB access, the user can modify data; with ADMIN_SYS, they can alter audit logs that would record those modifications, creating an undetectable fraud pathway. Violates NIST AC-5, SOX Sec.404, and PCI-DSS Req.6.4.",
+          "severity": "HIGH",
+          "recommendation": "Remove access to one of (PROD_DB, ADMIN_SYS) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+          "compliance_refs": [
+            "NIST AC-5",
+            "SOX Sec.404",
+            "PCI-DSS Req.6.4"
+          ]
+        },
+        {
+          "finding": "AFTER_HOURS_HIGH_RISK",
+          "details": "2 high-risk action(s) on sensitive resources during off-hours (GL_System, Customer_Vault) \u2014 possible unauthorized access or compromised account",
+          "severity": "HIGH",
+          "recommendation": "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+          "compliance_refs": [
+            "NIST AU-12",
+            "GDPR Art.32",
+            "ISO 27001 A.12.4"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to ADMIN_SYS, PROD_DB unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Remove access to one of (PROD_DB, ADMIN_SYS) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+        "Cross-check against change management; verify with on-call roster; escalate if unexplained"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "Stephen Bhat, a Director in the Finance department, poses a significant business risk due to his unusual access to critical identity systems within our organization, including ADMIN_SYS and PROD_DB, for which he has held onto access for 33 days without use. This combination of privileges, along with his ability to access sensitive resources outside of Finance and perform high-risk actions after hours, violates separation of duties and increases the likelihood of a security breach. If this account is compromised, it could lead to sensitive data exposure and financial losses, potentially damaging our reputation and relationships with customers."
+    },
+    {
+      "user_id": "USR00035",
+      "username": "nikhil.rao",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Admin account inactive 56 days (36d beyond the 20d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 6 system(s) amplifies the blast radius.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "Admin account inactive 56 days (36d beyond the 20d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 6 system(s) amplifies the blast radius.",
+          "severity": "CRITICAL",
+          "recommendation": "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "NO_MFA_PRIVILEGED",
+          "details": "admin account has no MFA-capable system (Okta/Azure_AD) in access list \u2014 admin actions unprotected by second factor",
+          "severity": "HIGH",
+          "recommendation": "Enroll in Okta or Azure AD MFA immediately; block privileged actions until enrolled",
+          "compliance_refs": [
+            "NIST IA-2",
+            "NIST IA-5",
+            "PCI-DSS Req.8.3"
+          ]
+        },
+        {
+          "finding": "SOD_VIOLATION",
+          "details": "Holds conflicting access pair [SIEM + AD] \u2014 this violates separation of duties. With SIEM access, the user can modify data; with AD, they can alter audit logs that would record those modifications, creating an undetectable fraud pathway. Violates NIST AC-5, SOX Sec.404, and PCI-DSS Req.6.4.",
+          "severity": "HIGH",
+          "recommendation": "Remove access to one of (SIEM, AD) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+          "compliance_refs": [
+            "NIST AC-5",
+            "SOX Sec.404",
+            "PCI-DSS Req.6.4"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+        "Enroll in Okta or Azure AD MFA immediately; block privileged actions until enrolled",
+        "Remove access to one of (SIEM, AD) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "The risk associated with nikhil.rao's account is extremely high due to prolonged inactivity, excessive system access, and potential for unauthorized activity after hours, which could lead to significant financial losses and reputational damage. This is compounded by the lack of multi-factor authentication and separation of duties, leaving the business vulnerable to potential data breaches and insider threats."
+    },
+    {
+      "user_id": "USR00038",
+      "username": "aisha.kim",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Compliance (Engineer) holds access to critical identity systems: Azure_AD. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Compliance (Engineer) holds access to critical identity systems: Azure_AD. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to Azure_AD unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "2 export events (2 on high-sensitivity resources including HRIS, Customer_Vault) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_RESOURCE_ACCESS",
+          "details": "Standard user accessed 1 high-sensitivity resources outside Compliance scope: Customer_Vault",
+          "severity": "MEDIUM",
+          "recommendation": "Verify business justification; raise access review ticket; review entitlements",
+          "compliance_refs": [
+            "NIST AC-3",
+            "ISO 27001 A.9.1"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to Azure_AD unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "The account belonging to Aisha Kim, an Engineer in the Compliance department, poses a significant risk to our organization due to her elevated access to sensitive identity systems including Azure_AD, and recent bulk data export events on high-sensitivity resources including HRIS and Customer_Vault. This access and activity raises concerns that critical data may be compromised if her account is compromised, putting sensitive information and customer identities at risk. If her account is accessed by unauthorized individuals, they could potentially manipulate customer data or gain unauthorized access to our systems."
+    },
+    {
+      "user_id": "USR00040",
+      "username": "nicholas.romano",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Power User account inactive 52 days (22d beyond the 30d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 2 system(s) amplifies the blast radius.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "Power User account inactive 52 days (22d beyond the 30d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 2 system(s) amplifies the blast radius.",
+          "severity": "HIGH",
+          "recommendation": "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "ROLE_EXCEPTION",
+          "details": "Security power-user typically requires broad access for operational duties \u2014 this account's 2 system access is expected for a Security role. Flag only if policy has changed or account owner has departed.",
+          "severity": "INFORMATIONAL",
+          "recommendation": "Confirm Security role still requires this level of access; verify with HR that account owner is still employed in this role; review annually as part of Security access certification",
+          "compliance_refs": [
+            "NIST AU-6"
+          ]
+        },
+        {
+          "finding": "NO_MFA_PRIVILEGED",
+          "details": "power-user account has no MFA-capable system (Okta/Azure_AD) in access list \u2014 admin actions unprotected by second factor",
+          "severity": "HIGH",
+          "recommendation": "Enroll in Okta or Azure AD MFA immediately; block privileged actions until enrolled",
+          "compliance_refs": [
+            "NIST IA-2",
+            "NIST IA-5",
+            "PCI-DSS Req.8.3"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+        "Enroll in Okta or Azure AD MFA immediately; block privileged actions until enrolled",
+        "Cross-check against change management; verify with on-call roster; escalate if unexplained"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "The account in question, belonging to Nicholas Romano, is flagged as high risk due to being inactive for 52 days while holding a critical privileged position within the Security department, allowing unauthorized access to our network via EMAIL and VPN systems. If compromised, this account could potentially disrupt critical operations, resulting in costly security breaches, reputational damage, and ultimately impacting our ability to safeguard sensitive client information stored in our Customer_Vault and PROD_DB resources. The lack of Multi-Factor Authentication (MFA) exacerbates this risk, making it an immediate concern for the Security team."
+    },
+    {
+      "user_id": "USR00044",
+      "username": "pooja.mishra",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Admin account inactive 59 days (39d beyond the 20d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 5 system(s) amplifies the blast radius.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "Admin account inactive 59 days (39d beyond the 20d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 5 system(s) amplifies the blast radius.",
+          "severity": "CRITICAL",
+          "recommendation": "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "4 export events (2 on high-sensitivity resources including HRIS, BI_Tool, SIEM) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "pooja.mishra is a admin in Finance who has not logged in for 59 days but still has access to 5 system(s) including EMAIL, SIEM, ADMIN_SYS. An attacker who obtains these unused credentials could operate undetected for weeks since dormant accounts do not trigger the activity-based alerts that normally catch suspicious behaviour in active accounts."
+    },
+    {
+      "user_id": "USR00046",
+      "username": "deepika.li",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "User account inactive 48 days \u2014 activity pattern suggests disuse or role change. Stale accounts pose risk if credentials are compromised without detection.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "User account inactive 48 days \u2014 activity pattern suggests disuse or role change. Stale accounts pose risk if credentials are compromised without detection.",
+          "severity": "LOW",
+          "recommendation": "Verify with manager if still required; disable if inactive for business reason; clean up access entitlements during next quarterly review",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Support (Manager) holds access to critical identity systems: PROD_DB. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to PROD_DB unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "6 export events (3 on high-sensitivity resources including Admin_Console, HRIS, Customer_Vault) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to PROD_DB unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "deepika.li is a user in Support who has not logged in for 48 days but still has access to 1 system(s) including PROD_DB. An attacker who obtains these unused credentials could operate undetected for weeks since dormant accounts do not trigger the activity-based alerts that normally catch suspicious behaviour in active accounts."
+    },
+    {
+      "user_id": "USR00048",
+      "username": "xiulan.colombo",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Compliance (Administrator) holds access to critical identity systems: Azure_AD. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Compliance (Administrator) holds access to critical identity systems: Azure_AD. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to Azure_AD unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "3 export events (2 on high-sensitivity resources including GL_System, BI_Tool) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_RESOURCE_ACCESS",
+          "details": "Standard user accessed 2 high-sensitivity resources outside Compliance scope: PROD_DB",
+          "severity": "MEDIUM",
+          "recommendation": "Verify business justification; raise access review ticket; review entitlements",
+          "compliance_refs": [
+            "NIST AC-3",
+            "ISO 27001 A.9.1"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to Azure_AD unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "xiulan.colombo works in Compliance but has access to critical infrastructure systems normally restricted to IT and Security teams (GCP, Azure_AD). If this access was granted by mistake or is no longer needed, any attacker who compromises this account gains a much larger footprint than a standard user role in Compliance should ever have."
+    },
+    {
+      "user_id": "USR00049",
+      "username": "thomas.kang",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Engineering (Administrator) holds access to critical identity systems: AWS_IAM. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Engineering (Administrator) holds access to critical identity systems: AWS_IAM. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to AWS_IAM unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "AFTER_HOURS_HIGH_RISK",
+          "details": "2 high-risk action(s) on sensitive resources during off-hours (PROD_DB) \u2014 possible unauthorized access or compromised account",
+          "severity": "HIGH",
+          "recommendation": "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+          "compliance_refs": [
+            "NIST AU-12",
+            "GDPR Art.32",
+            "ISO 27001 A.12.4"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "4 export events (2 on high-sensitivity resources including Email_Archive, PROD_DB, File_Share) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to AWS_IAM unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "thomas.kang works in Engineering but has access to critical infrastructure systems normally restricted to IT and Security teams (EMAIL, AWS_IAM). If this access was granted by mistake or is no longer needed, any attacker who compromises this account gains a much larger footprint than a standard user role in Engineering should ever have."
+    },
+    {
+      "user_id": "USR00053",
+      "username": "timothy.jo",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Engineering (Engineer) holds access to critical identity systems: SIEM, PROD_DB. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Engineering (Engineer) holds access to critical identity systems: SIEM, PROD_DB. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to SIEM, PROD_DB unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "SOD_VIOLATION",
+          "details": "Holds conflicting access pair [PROD_DB + SIEM] \u2014 this violates separation of duties. With PROD_DB access, the user can modify data; with SIEM, they can alter audit logs that would record those modifications, creating an undetectable fraud pathway. Violates NIST AC-5, SOX Sec.404, and PCI-DSS Req.6.4.",
+          "severity": "HIGH",
+          "recommendation": "Remove access to one of (PROD_DB, SIEM) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+          "compliance_refs": [
+            "NIST AC-5",
+            "SOX Sec.404",
+            "PCI-DSS Req.6.4"
+          ]
+        },
+        {
+          "finding": "AFTER_HOURS_HIGH_RISK",
+          "details": "2 high-risk action(s) on sensitive resources during off-hours (Customer_Vault) \u2014 possible unauthorized access or compromised account",
+          "severity": "HIGH",
+          "recommendation": "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+          "compliance_refs": [
+            "NIST AU-12",
+            "GDPR Art.32",
+            "ISO 27001 A.12.4"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to SIEM, PROD_DB unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Remove access to one of (PROD_DB, SIEM) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+        "Cross-check against change management; verify with on-call roster; escalate if unexplained"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "timothy.jo works in Engineering but has access to critical infrastructure systems normally restricted to IT and Security teams (SIEM, PROD_DB). If this access was granted by mistake or is no longer needed, any attacker who compromises this account gains a much larger footprint than a standard user role in Engineering should ever have."
+    },
+    {
+      "user_id": "USR00056",
+      "username": "william.kumar",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "User account inactive 58 days \u2014 activity pattern suggests disuse or role change. Stale accounts pose risk if credentials are compromised without detection.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "User account inactive 58 days \u2014 activity pattern suggests disuse or role change. Stale accounts pose risk if credentials are compromised without detection.",
+          "severity": "LOW",
+          "recommendation": "Verify with manager if still required; disable if inactive for business reason; clean up access entitlements during next quarterly review",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Compliance (Manager) holds access to critical identity systems: Azure_AD. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to Azure_AD unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "5 export events (4 on high-sensitivity resources including GL_System, File_Share, PROD_DB) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to Azure_AD unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "william.kumar is a user in Compliance who has not logged in for 58 days but still has access to 2 system(s) including Azure_AD, VPN. An attacker who obtains these unused credentials could operate undetected for weeks since dormant accounts do not trigger the activity-based alerts that normally catch suspicious behaviour in active accounts."
+    },
+    {
+      "user_id": "USR00057",
+      "username": "zainab.jo",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "admin account has no MFA-capable system (Okta/Azure_AD) in access list \u2014 admin actions unprotected by second factor",
+      "findings": [
+        {
+          "finding": "NO_MFA_PRIVILEGED",
+          "details": "admin account has no MFA-capable system (Okta/Azure_AD) in access list \u2014 admin actions unprotected by second factor",
+          "severity": "HIGH",
+          "recommendation": "Enroll in Okta or Azure AD MFA immediately; block privileged actions until enrolled",
+          "compliance_refs": [
+            "NIST IA-2",
+            "NIST IA-5",
+            "PCI-DSS Req.8.3"
+          ]
+        },
+        {
+          "finding": "SOD_VIOLATION",
+          "details": "Holds conflicting access pair [SIEM + AD] \u2014 this violates separation of duties. With SIEM access, the user can modify data; with AD, they can alter audit logs that would record those modifications, creating an undetectable fraud pathway. Violates NIST AC-5, SOX Sec.404, and PCI-DSS Req.6.4.",
+          "severity": "HIGH",
+          "recommendation": "Remove access to one of (SIEM, AD) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+          "compliance_refs": [
+            "NIST AC-5",
+            "SOX Sec.404",
+            "PCI-DSS Req.6.4"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "4 export events (3 on high-sensitivity resources including File_Share, Customer_Vault, PROD_DB) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Enroll in Okta or Azure AD MFA immediately; block privileged actions until enrolled",
+        "Remove access to one of (SIEM, AD) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "zainab.jo has admin access to 4 system(s) in Sales but their account is not protected by multi-factor authentication. A stolen password alone is enough for someone to log in and perform admin-level actions \u2014 a single phishing email could trigger a major security incident."
+    },
+    {
+      "user_id": "USR00059",
+      "username": "thomas.lewis",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Power User account inactive 58 days (28d beyond the 30d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 4 system(s) amplifies the blast radius.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "Power User account inactive 58 days (28d beyond the 30d threshold). Privileged accounts left unmonitored create an undetected attack window \u2014 a threat actor could use these credentials for weeks without triggering activity-based alerts. Access to 4 system(s) amplifies the blast radius.",
+          "severity": "HIGH",
+          "recommendation": "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "AFTER_HOURS_HIGH_RISK",
+          "details": "2 high-risk action(s) on sensitive resources during off-hours (HRIS) \u2014 possible unauthorized access or compromised account",
+          "severity": "HIGH",
+          "recommendation": "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+          "compliance_refs": [
+            "NIST AU-12",
+            "GDPR Art.32",
+            "ISO 27001 A.12.4"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "4 export events (2 on high-sensitivity resources including HRIS, Data_Lake, Email_Archive) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Cross-reference with HR payroll system immediately; if employee departed, revoke all access within 2 hours; if on leave, implement temporary access suspension with manager approval; document in identity governance system",
+        "Cross-check against change management; verify with on-call roster; escalate if unexplained",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "thomas.lewis is a power user in Finance who has not logged in for 58 days but still has access to 4 system(s) including ServiceNow, EMAIL, SIEM. An attacker who obtains these unused credentials could operate undetected for weeks since dormant accounts do not trigger the activity-based alerts that normally catch suspicious behaviour in active accounts."
+    },
+    {
+      "user_id": "USR00067",
+      "username": "donald.wang",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "User account inactive 54 days \u2014 activity pattern suggests disuse or role change. Stale accounts pose risk if credentials are compromised without detection.",
+      "findings": [
+        {
+          "finding": "STALE_PRIVILEGED_ACCOUNT",
+          "details": "User account inactive 54 days \u2014 activity pattern suggests disuse or role change. Stale accounts pose risk if credentials are compromised without detection.",
+          "severity": "LOW",
+          "recommendation": "Verify with manager if still required; disable if inactive for business reason; clean up access entitlements during next quarterly review",
+          "compliance_refs": [
+            "NIST AC-2(j)",
+            "GDPR Art.32",
+            "PCI-DSS Req.8.1.4"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Marketing (Manager) holds access to critical identity systems: PROD_DB, ADMIN_SYS. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to PROD_DB, ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "SOD_VIOLATION",
+          "details": "Holds conflicting access pair [PROD_DB + ADMIN_SYS] \u2014 this violates separation of duties. With PROD_DB access, the user can modify data; with ADMIN_SYS, they can alter audit logs that would record those modifications, creating an undetectable fraud pathway. Violates NIST AC-5, SOX Sec.404, and PCI-DSS Req.6.4.",
+          "severity": "HIGH",
+          "recommendation": "Remove access to one of (PROD_DB, ADMIN_SYS) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+          "compliance_refs": [
+            "NIST AC-5",
+            "SOX Sec.404",
+            "PCI-DSS Req.6.4"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to PROD_DB, ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Remove access to one of (PROD_DB, ADMIN_SYS) immediately; if business critical, add compensating control with dual-approval workflow and enhanced SIEM monitoring; document in GRC system as accepted risk with executive sign-off",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "donald.wang is a user in Marketing who has not logged in for 54 days but still has access to 2 system(s) including PROD_DB, ADMIN_SYS. An attacker who obtains these unused credentials could operate undetected for weeks since dormant accounts do not trigger the activity-based alerts that normally catch suspicious behaviour in active accounts."
+    },
+    {
+      "user_id": "USR00075",
+      "username": "timothy.huang",
+      "risk_level": "CRITICAL",
+      "risk_score": 100,
+      "reason": "Standard user in Sales (Manager) holds access to critical identity systems: ADMIN_SYS. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+      "findings": [
+        {
+          "finding": "CROSS_DEPT_SYSTEM_ACCESS",
+          "details": "Standard user in Sales (Manager) holds access to critical identity systems: ADMIN_SYS. These systems control authentication, authorisation, and audit logs. A standard user role should not have admin-level system access \u2014 this pattern matches insider threat and privilege escalation indicators.",
+          "severity": "HIGH",
+          "recommendation": "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+          "compliance_refs": [
+            "NIST AC-3",
+            "GDPR Art.25",
+            "PCI-DSS Req.7"
+          ]
+        },
+        {
+          "finding": "BULK_DATA_EXPORT",
+          "details": "2 export events (2 on high-sensitivity resources including GL_System, HRIS) in analysis window",
+          "severity": "CRITICAL",
+          "recommendation": "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+          "compliance_refs": [
+            "NIST AU-2",
+            "GDPR Art.32",
+            "PCI-DSS Req.10"
+          ]
+        },
+        {
+          "finding": "CROSS_DEPT_RESOURCE_ACCESS",
+          "details": "Standard user accessed 4 high-sensitivity resources outside Sales scope: PROD_DB, HRIS",
+          "severity": "MEDIUM",
+          "recommendation": "Verify business justification; raise access review ticket; review entitlements",
+          "compliance_refs": [
+            "NIST AC-3",
+            "ISO 27001 A.9.1"
+          ]
+        }
+      ],
+      "confidence": 0.92,
+      "suggested_actions": [
+        "Raise access review ticket immediately; validate business justification with department head and CISO; remove access to ADMIN_SYS unless documented exceptional approval; add to enhanced SIEM monitoring during review period",
+        "Review DLP policy; require approval workflow for sensitive exports; check data destination",
+        "Security manager review required immediately"
+      ],
+      "next_escalation": "\ud83d\udd34 IMMEDIATE \u2014 Security manager + CISO notification required",
+      "narrative": "timothy.huang works in Sales but has access to critical infrastructure systems normally restricted to IT and Security teams (ADMIN_SYS). If this access was granted by mistake or is no longer needed, any attacker who compromises this account gains a much larger footprint than a standard user role in Sales should ever have."
+    }
+  ],
+  "metadata": {
+    "total_users": 300,
+    "risks_detected": 119,
+    "critical_count": 85,
+    "sod_violations": 53,
+    "elapsed_seconds": 8.34,
+    "generated_at": "2026-06-14T18:09:44.623904Z",
+    "precision": 0.8621,
+    "recall": 0.9669,
+    "f1_score": 0.9115,
+    "avg_precision": 0.8621
+  }
+}

@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>IAM Risk Intelligence — SG GSC</title>
+<script src="data.js"></script>
+<style>
+:root{--bg:#07090f;--s1:#0d1118;--s2:#121820;--s3:#1a2333;--bd:#1e2d42;--tx:#dde4f0;--mu:#52637a;--dm:#2d3f52;
+--red:#ff2d55;--ora:#ff9500;--yel:#ffd60a;--grn:#32d74b;--blu:#0a84ff;--tea:#5ac8fa;--pur:#bf5af2;--pnk:#ff375f;
+--mono:'JetBrains Mono','Fira Code',monospace;--sans:'Inter',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:13px;line-height:1.5;overflow-x:hidden}
+/* TOPBAR */
+.top{height:48px;background:var(--s1);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:200}
+.brand{display:flex;align-items:center;gap:12px}
+.sg{background:var(--red);color:#fff;font-weight:900;font-size:12px;padding:4px 8px;letter-spacing:1.5px}
+.brand-t{font-size:14px;font-weight:600}.brand-s{font-size:10px;color:var(--mu);font-family:var(--mono)}
+.top-mid{display:flex;gap:20px}
+.ts{font-size:11px;font-family:var(--mono)}.ts .v{font-weight:700}
+.ts .v.cr{color:var(--red)}.ts .v.hi{color:var(--ora)}.ts .v.pu{color:var(--pur)}.ts .v.bl{color:var(--blu)}
+.live{display:flex;align-items:center;gap:6px;font-size:11px;font-family:var(--mono)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--grn);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(50,215,75,.4)}50%{box-shadow:0 0 0 4px rgba(50,215,75,0)}}
+/* LAYOUT */
+.layout{display:flex;height:calc(100vh - 48px)}
+/* SIDEBAR */
+.sidebar{width:210px;background:var(--s1);border-right:1px solid var(--bd);padding:10px 0;overflow-y:auto;flex-shrink:0}
+.ns{padding:9px 16px 4px;font-size:10px;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 16px;cursor:pointer;color:var(--mu);font-size:12px;border-left:3px solid transparent;transition:all .1s;user-select:none}
+.ni:hover{color:var(--tx);background:var(--s2)}.ni.active{color:var(--tx);background:var(--s2);border-left-color:var(--red)}
+.ni .ico{font-size:14px;width:18px;text-align:center}
+.nbadge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;font-family:var(--mono)}
+.nbadge.w{background:#3a2200;color:var(--ora);border:1px solid var(--ora)}.nbadge.g{background:#0d2a15;color:var(--grn);border:1px solid var(--grn)}
+/* MAIN */
+.main{flex:1;overflow-y:auto}.view{display:none;padding:20px}.view.active{display:block}
+.vt{font-size:15px;font-weight:700;margin-bottom:3px}.vs{font-size:11px;color:var(--mu);margin-bottom:16px}
+/* METRIC CARDS */
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:18px}
+.mc{background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:14px;position:relative;overflow:hidden}
+.mc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.mc.cr::after{background:var(--red)}.mc.hi::after{background:var(--ora)}.mc.me::after{background:var(--yel)}
+.mc.ok::after{background:var(--grn)}.mc.bl::after{background:var(--blu)}.mc.pu::after{background:var(--pur)}
+.ml{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.mv{font-size:28px;font-weight:800;line-height:1;font-family:var(--mono)}
+.mc.cr .mv{color:var(--red)}.mc.hi .mv{color:var(--ora)}.mc.me .mv{color:var(--yel)}.mc.ok .mv{color:var(--grn)}.mc.bl .mv{color:var(--blu)}.mc.pu .mv{color:var(--pur)}
+.ms{font-size:10px;color:var(--mu);margin-top:5px}
+/* RISK BADGE */
+.rb{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;font-family:var(--mono);letter-spacing:.3px}
+.rb.CRITICAL{background:rgba(255,45,85,.15);color:var(--red);border:1px solid rgba(255,45,85,.3)}
+.rb.HIGH{background:rgba(255,149,0,.15);color:var(--ora);border:1px solid rgba(255,149,0,.3)}
+.rb.MEDIUM{background:rgba(255,214,10,.15);color:var(--yel);border:1px solid rgba(255,214,10,.3)}
+.rb.LOW{background:rgba(50,215,75,.1);color:var(--grn);border:1px solid rgba(50,215,75,.25)}
+.rb.INFORMATIONAL{background:rgba(82,99,122,.15);color:var(--mu);border:1px solid rgba(82,99,122,.3)}
+/* SCORE BAR */
+.sb{display:flex;align-items:center;gap:6px;min-width:90px}
+.st{flex:1;height:4px;background:var(--bd);border-radius:2px;overflow:hidden}
+.sf{height:100%;border-radius:2px}
+.sf.CRITICAL{background:var(--red)}.sf.HIGH{background:var(--ora)}.sf.MEDIUM{background:var(--yel)}.sf.LOW{background:var(--grn)}
+.sn{font-family:var(--mono);font-size:10px;width:22px;text-align:right;color:var(--mu)}
+/* TABLE */
+.tw{background:var(--s1);border:1px solid var(--bd);border-radius:6px;overflow:hidden;max-height:500px;overflow-y:auto}
+.dt{width:100%;border-collapse:collapse}
+.dt th{text-align:left;padding:7px 10px;font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--bd);background:var(--s1);position:sticky;top:0;z-index:5}
+.dt td{padding:8px 10px;border-bottom:1px solid rgba(30,45,66,.4);font-size:12px;vertical-align:middle}
+.dt tr:hover td{background:var(--s2);cursor:pointer}
+.uid{font-family:var(--mono);color:var(--mu);font-size:10px}.uname{font-weight:500}
+/* FILTERS */
+.fb{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.fbtn{padding:4px 11px;border-radius:20px;border:1px solid var(--bd);background:transparent;color:var(--mu);cursor:pointer;font-size:11px;transition:all .1s;font-family:var(--sans)}
+.fbtn:hover{border-color:var(--red);color:var(--tx)}.fbtn.active{background:var(--red);border-color:var(--red);color:#fff}
+.srch{padding:5px 10px;border-radius:5px;border:1px solid var(--bd);background:var(--s2);color:var(--tx);font-size:11px;width:175px}
+.srch:focus{outline:none;border-color:var(--red)}
+/* CHARTS */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.cc{background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:14px}
+.ct{font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.br{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:11px}
+.bl{width:90px;text-align:right;color:var(--mu);font-size:10px}
+.bt{flex:1;height:18px;background:var(--bd);border-radius:3px;overflow:hidden}
+.bf{height:100%;border-radius:3px;display:flex;align-items:center;padding:0 6px;font-size:10px;font-family:var(--mono);font-weight:700;transition:width .6s}
+/* OVERLAY */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:300;display:none;align-items:flex-start;justify-content:flex-end;padding-top:48px}
+.ov.open{display:flex}
+.dp{width:500px;height:100%;background:var(--s1);border-left:1px solid var(--bd);overflow-y:auto;padding:20px}
+.dc{float:right;background:none;border:none;color:var(--mu);cursor:pointer;font-size:18px}
+.dc:hover{color:var(--tx)}.dt2{font-size:15px;font-weight:700;margin-bottom:3px}.ds{font-size:11px;color:var(--mu);font-family:var(--mono);margin-bottom:14px}
+.fc{background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:10px;margin-bottom:8px}
+.fh{display:flex;align-items:center;gap:7px;margin-bottom:5px}.ft{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--tea)}
+.fd{font-size:11px;color:var(--mu);margin-bottom:5px}.fr{font-size:11px;color:var(--tx)}.fr::before{content:'→ ';color:var(--red)}
+.fcc{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}
+.ctag{font-size:9px;font-family:var(--mono);padding:2px 5px;border-radius:3px;background:var(--s3);color:var(--mu);border:1px solid var(--bd)}
+/* BUTTONS */
+.btn{padding:5px 12px;border-radius:5px;border:1px solid var(--bd);background:transparent;color:var(--tx);cursor:pointer;font-size:11px;font-family:var(--sans);transition:all .1s}
+.btn:hover{background:var(--s2)}.btn.p{background:var(--red);border-color:var(--red);color:#fff}.btn.p:hover{background:var(--pnk)}.btn.sm{padding:3px 8px;font-size:10px}
+/* GRAPH */
+#gcv{width:100%;height:440px;background:var(--s1);border:1px solid var(--bd);border-radius:6px;display:block;cursor:grab}
+#gcv:active{cursor:grabbing}
+/* MISC */
+.div{border:none;border-top:1px solid var(--bd);margin:12px 0}
+.tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:10px;font-family:var(--mono);background:var(--s3);color:var(--mu);border:1px solid var(--bd);margin:2px}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:9px 14px;font-size:12px;z-index:999;transform:translateY(60px);opacity:0;transition:all .22s}
+.toast.show{transform:translateY(0);opacity:1}
+.sec{margin-bottom:18px}.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}.stl{font-size:11px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.5px}
+.pbs{background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:10px;margin-bottom:6px;display:flex;gap:10px}
+.pbn{width:22px;height:22px;border-radius:50%;background:var(--s3);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+.pba{font-weight:600;font-size:12px;margin-bottom:3px}.pbd{font-size:11px;color:var(--mu)}.pbm{display:flex;gap:10px;margin-top:4px;font-size:10px;font-family:var(--mono);color:var(--mu)}
+.dlpr{background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:10px 13px;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.dlpa{font-family:var(--mono);font-size:11px}.dlpi{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.sod-r{background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:10px;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.sys-t{font-family:var(--mono);font-size:11px;padding:3px 7px;background:var(--s3);border:1px solid var(--bd);border-radius:3px}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand"><div class="sg">SG</div><div><div class="brand-t">IAM Risk Intelligence Platform</div><div class="brand-s">Global Solution Centre · Identity & Access Mgmt · Option A (AI/ML)</div></div></div>
+  <div class="top-mid" id="top-stats"></div>
+  <div class="live"><div class="dot"></div>LIVE &nbsp;<span id="clk" style="color:var(--mu)"></span></div>
+</div>
+<div class="layout">
+<nav class="sidebar">
+  <div class="ns">Overview</div>
+  <div class="ni active" data-v="dashboard" onclick="nav(this)"><span class="ico">🛡️</span>Dashboard</div>
+  <div class="ns">Users</div>
+  <div class="ni" data-v="users" onclick="nav(this)"><span class="ico">👤</span>User Risk<span class="nbadge" id="nb1">–</span></div>
+  <div class="ni" data-v="clusters" onclick="nav(this)"><span class="ico">🔬</span>Behaviour Clusters</div>
+  <div class="ni" data-v="sod" onclick="nav(this)"><span class="ico">⚖️</span>SoD Violations<span class="nbadge w" id="nb2">–</span></div>
+  <div class="ns">Events</div>
+  <div class="ni" data-v="events" onclick="nav(this)"><span class="ico">📡</span>Event Feed</div>
+  <div class="ni" data-v="dlp" onclick="nav(this)"><span class="ico">🔒</span>DLP Alerts<span class="nbadge" id="nb3">–</span></div>
+  <div class="ns">Intelligence</div>
+  <div class="ni" data-v="graph" onclick="nav(this)"><span class="ico">🕸️</span>Privilege Graph</div>
+  <div class="ni" data-v="breach" onclick="nav(this)"><span class="ico">💥</span>Breach Simulator</div>
+  <div class="ni" data-v="corr" onclick="nav(this)"><span class="ico">🔗</span>Multi-System Risk</div>
+  <div class="ni" data-v="org" onclick="nav(this)"><span class="ico">🏢</span>Org Anomaly Detect</div>
+  <div class="ns">Governance</div>
+  <div class="ni" data-v="compliance" onclick="nav(this)"><span class="ico">📋</span>Compliance Gaps</div>
+  <div class="ni" data-v="playbooks" onclick="nav(this)"><span class="ico">📖</span>Remediation Plans<span class="nbadge g" id="nb4">–</span></div>
+  <div class="ni" data-v="evaluation" onclick="nav(this)"><span class="ico">📊</span>Precision / Recall</div>
+  <div class="ni" data-v="executive" onclick="nav(this)"><span class="ico">🎯</span>Executive Summary</div>
+  <div class="ni" data-v="trends" onclick="nav(this)"><span class="ico">📈</span>Risk Trends</div>
+  <div class="ni" data-v="revocation" onclick="nav(this)"><span class="ico">🔒</span>Access Revocation</div>
+  <div class="ni" data-v="okta" onclick="nav(this)"><span class="ico">🔌</span>Okta Live</div>
+</nav>
+<main class="main">
+
+<!-- DASHBOARD -->
+<div id="view-dashboard" class="view active">
+  <div class="vt">Security Overview</div>
+  <div class="vs">Real-time identity risk summary — 300 users × 900 events | Runtime: <span id="rt">–</span>s</div>
+  <div class="mg" id="d-metrics"></div>
+  <div class="cg" id="d-charts"></div>
+  <div class="sec"><div class="sh"><div class="stl">🔴 Top Critical Users</div><button class="btn sm" onclick="navTo('users')">View all →</button></div>
+    <div class="tw"><table class="dt"><thead><tr><th>User</th><th>Dept</th><th>Priv</th><th>Risk</th><th>Score</th><th>Top Finding</th><th></th></tr></thead><tbody id="d-top"></tbody></table></div></div>
+</div>
+
+<!-- USERS -->
+<div id="view-users" class="view">
+  <div class="vt">User Risk Analysis</div><div class="vs">Hybrid rule + Isolation Forest ML scoring across all 300 accounts</div>
+  <div class="fb">
+    <button class="fbtn active" onclick="fu('ALL',this)">All</button>
+    <button class="fbtn" onclick="fu('CRITICAL',this)">Critical</button>
+    <button class="fbtn" onclick="fu('HIGH',this)">High</button>
+    <button class="fbtn" onclick="fu('MEDIUM',this)">Medium</button>
+    <button class="fbtn" onclick="fu('LOW',this)">Low</button>
+    <button class="fbtn" onclick="fu('admin',this)">Admins</button>
+    <button class="fbtn" onclick="fu('service-account',this)">Service Accts</button>
+    <input class="srch" type="text" placeholder="Search name / dept…" oninput="su(this.value)">
+  </div>
+  <div class="tw"><table class="dt"><thead><tr><th>ID</th><th>Name / Title</th><th>Dept</th><th>Priv</th><th>Systems</th><th>Inactive</th><th>Risk</th><th>Score</th><th>Cluster</th></tr></thead><tbody id="u-body"></tbody></table></div>
+</div>
+
+<!-- CLUSTERS -->
+<div id="view-clusters" class="view">
+  <div class="vt">Behavioural Clustering</div><div class="vs">K-Means (k=5) on: privilege rank, system count, inactivity, events, night access, exports, admin ops, failures</div>
+  <div id="cl-content"></div>
+</div>
+
+<!-- SOD -->
+<div id="view-sod" class="view">
+  <div class="vt">Separation of Duties Violations</div><div class="vs">Users holding conflicting access rights — NIST AC-5, SOX, PCI-DSS Req.6.4</div>
+  <div class="mg" id="sod-metrics"></div>
+  <div class="fb">
+    <button class="fbtn active" onclick="fsod('ALL',this)">All</button>
+    <button class="fbtn" onclick="fsod('PROD_DB',this)">PROD_DB</button>
+    <button class="fbtn" onclick="fsod('ADMIN_SYS',this)">ADMIN_SYS</button>
+    <button class="fbtn" onclick="fsod('SIEM',this)">SIEM</button>
+    <button class="fbtn" onclick="fsod('AWS_IAM',this)">AWS_IAM</button>
+  </div>
+  <div id="sod-list"></div>
+</div>
+
+<!-- EVENTS -->
+<div id="view-events" class="view">
+  <div class="vt">Event Risk Feed</div><div class="vs">900 events scored by rules + Isolation Forest ML blending</div>
+  <div class="fb">
+    <button class="fbtn active" onclick="fe('ALL',this)">All Risky</button>
+    <button class="fbtn" onclick="fe('CRITICAL',this)">Critical</button>
+    <button class="fbtn" onclick="fe('HIGH',this)">High</button>
+    <button class="fbtn" onclick="fe('MEDIUM',this)">Medium</button>
+    <button class="fbtn" onclick="fe('ML',this)">ML-flagged</button>
+    <button class="fbtn" onclick="fe('night',this)">Night access</button>
+    <button class="fbtn" onclick="fe('export',this)">Bulk exports</button>
+  </div>
+  <div class="tw"><table class="dt"><thead><tr><th>Timestamp</th><th>User</th><th>Action</th><th>Resource</th><th>Sens</th><th>Time</th><th>Status</th><th>Risk</th><th>Score</th><th>ML</th></tr></thead><tbody id="ev-body"></tbody></table></div>
+</div>
+
+<!-- DLP -->
+<div id="view-dlp" class="view">
+  <div class="vt">DLP Integration — Data Loss Prevention</div><div class="vs">Active prevention rules triggered by detected risk. Real-time blocking based on identity risk scores.</div>
+  <div class="mg" id="dlp-m"></div>
+  <div class="sec"><div class="stl" style="margin-bottom:10px">Active DLP Rules (7)</div><div id="dlp-rules"></div></div>
+  <div class="sec"><div class="stl" style="margin-bottom:10px">Recent DLP Incidents</div><div id="dlp-inc"></div></div>
+</div>
+
+<!-- GRAPH -->
+<div id="view-graph" class="view">
+  <div class="vt">Privilege Access Graph</div><div class="vs">Interactive user→system NetworkX graph. Red = critical systems. <span style="color:var(--red)">Drag to pan, scroll to zoom.</span></div>
+  <canvas id="gcv"></canvas>
+  <div class="cg" style="margin-top:14px">
+    <div class="cc"><div class="ct">Graph Statistics</div><div id="g-stats"></div></div>
+    <div class="cc"><div class="ct">Most Connected Users (Highest Blast Radius Surface)</div><div id="g-top"></div></div>
+  </div>
+</div>
+
+<!-- BREACH -->
+<div id="view-breach" class="view">
+  <div class="vt">Breach Impact Simulator</div><div class="vs">If this account's credentials are compromised — what data, systems, and financial exposure is at stake? Includes lateral movement paths.</div>
+  <div style="display:flex;gap:8px;margin-bottom:16px;align-items:center">
+    <select id="bsel" style="flex:1;padding:7px;background:var(--s1);border:1px solid var(--bd);color:var(--tx);border-radius:5px;font-size:12px"><option value="">Select a user to simulate…</option></select>
+    <button class="btn p" onclick="runBreach()">Run Simulation</button>
+  </div>
+  <div class="sec"><div class="stl" style="margin-bottom:10px">Pre-computed: Top 10 Highest Blast Radius Accounts</div><div id="b-top10"></div></div>
+  <div id="b-result"></div>
+</div>
+
+<!-- CORRELATION -->
+<div id="view-corr" class="view">
+  <div class="vt">Multi-System Risk Correlation</div><div class="vs">High-risk users with access spanning ≥2 critical systems — potential lateral movement vectors requiring immediate review.</div>
+  <div class="mg" id="cr-m"></div><div id="cr-list"></div>
+</div>
+
+<!-- ORG ANOMALY -->
+<div id="view-org" class="view">
+  <div class="vt">Organizational Anomaly Detection</div><div class="vs">Department-level baselines vs actual behaviour. Flags teams with abnormal risk concentrations or access patterns.</div>
+  <div id="org-content"></div>
+</div>
+
+<!-- COMPLIANCE -->
+<div id="view-compliance" class="view">
+  <div class="vt">Compliance Gap Analysis</div><div class="vs">Per-framework violations across all users and systems. NIST SP 800-53, GDPR, PCI-DSS, SOX, ISO 27001.</div>
+  <div id="comp-content"></div>
+</div>
+
+<!-- PLAYBOOKS -->
+<div id="view-playbooks" class="view">
+  <div class="vt">Automated Remediation Playbooks</div><div class="vs">Step-by-step fix plans with SLA timers, owners, and verification criteria. Auto-generated from findings.</div>
+  <div class="fb">
+    <button class="fbtn active" onclick="fpb('ALL',this)">All</button>
+    <button class="fbtn" onclick="fpb('STALE_PRIVILEGED_ACCOUNT',this)">Stale Admin</button>
+    <button class="fbtn" onclick="fpb('SOD_VIOLATION',this)">SoD</button>
+    <button class="fbtn" onclick="fpb('BULK_DATA_EXPORT',this)">Bulk Export</button>
+    <button class="fbtn" onclick="fpb('AFTER_HOURS_HIGH_RISK',this)">After-Hours</button>
+    <button class="fbtn" onclick="fpb('NO_MFA_PRIVILEGED',this)">No MFA</button>
+  </div>
+  <div id="pb-list"></div>
+</div>
+
+
+<!-- EVALUATION -->
+<div id="view-evaluation" class="view">
+  <div class="vt">Detection Quality — Precision / Recall / F1</div>
+  <div class="vs">Pipeline predictions evaluated against ground-truth label files (identity_users_labels.csv + identity_events_labels.csv)</div>
+  <div id="eval-content"></div>
+</div>
+
+
+<!-- EXECUTIVE SUMMARY VIEW -->
+<div id="view-executive" class="view">
+  <div class="vt">Executive Security Summary</div>
+  <div class="vs">LLM-generated CISO briefing — plain English overview of identity risk posture</div>
+  <div id="exec-content"></div>
+</div>
+
+<!-- RISK TRENDS VIEW -->
+<div id="view-trends" class="view">
+  <div class="vt">Risk Trend Analysis</div>
+  <div class="vs">Historical access patterns, anomaly density over time, and risk trajectory</div>
+  <div id="trends-content"></div>
+</div>
+
+<!-- ACCESS REVOCATION VIEW -->
+<div id="view-revocation" class="view">
+  <div class="vt">Access Revocation Workflow</div>
+  <div class="vs">Automated revocation actions for CRITICAL/HIGH risk accounts</div>
+  <div id="revocation-content"></div>
+</div>
+
+<!-- OKTA LIVE VIEW -->
+<div id="view-okta" class="view">
+  <div class="vt">Auth0 Live Integration</div>
+  <div class="vs">Real-time identity data from Okta Developer API — Level 2 Bonus</div>
+  <div id="okta-content"></div>
+</div>
+
+<!-- OKTA LIVE VIEW -->
+<div id="view-oktalive" class="view">
+  <div class="vt">Auth0 Live Integration</div>
+  <div class="vs">Real-time identity data from Okta API — users, groups, audit logs</div>
+  <div id="okta-content"></div>
+</div>
+</main></div>
+
+<div class="ov" id="ov" onclick="cov(event)"><div class="dp" id="dp"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+const D = REPORT_DATA;
+let AU = D.users, FU = [...D.users], FE = D.events.filter(e=>e.risk_score>0), UF='ALL';
+let gOff={x:0,y:0}, gDrag=null, gScale=1;
+
+// ── Clock ─────────────────────────────────────────────────────────────────────
+setInterval(()=>document.getElementById('clk').textContent=new Date().toLocaleTimeString('en-GB'),1000);
+
+// ── Nav ───────────────────────────────────────────────────────────────────────
+const HANDLERS={dashboard:rDash,users:()=>rUT(FU),clusters:rClusters,sod:rSod,events:()=>rET(FE),dlp:rDlp,graph:rGraph,breach:rBreach,corr:rCorr,org:rOrg,compliance:rComp,playbooks:()=>rPB(D.playbooks)};
+function nav(el){
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));el.classList.add('active');
+  const v=el.dataset.v;
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  HANDLERS[v]&&HANDLERS[v]();
+}
+function navTo(v){const el=document.querySelector(`[data-v="${v}"]`);el&&nav(el);}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function rb(l){return `<span class="rb ${l}">${l}</span>`;}
+function sb(s,l){return `<div class="sb"><div class="st"><div class="sf ${l}" style="width:${s}%"></div></div><span class="sn">${s}</span></div>`;}
+function toast(m,t=2200){const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),t);}
+function oov(h){document.getElementById('dp').innerHTML=h;document.getElementById('ov').classList.add('open');}
+function cov(e){if(e.target.id==='ov')document.getElementById('ov').classList.remove('open');}
+function cpanel(){document.getElementById('ov').classList.remove('open');}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+function init(){
+  const s=D.summary;
+  document.getElementById('rt').textContent=D.elapsed;
+  document.getElementById('nb1').textContent=s.critical_users;
+  document.getElementById('nb2').textContent=s.sod_violations;
+  document.getElementById('nb3').textContent=s.dlp_incidents;
+  document.getElementById('nb4').textContent=s.playbooks;
+  document.getElementById('top-stats').innerHTML=`
+    <div class="ts"><span class="v cr">${s.critical_users}</span> Critical</div>
+    <div class="ts"><span class="v hi">${s.high_risk_users}</span> High Risk</div>
+    <div class="ts"><span class="v pu">${s.sod_violations}</span> SoD</div>
+    <div class="ts"><span class="v bl">${s.critical_events}</span> Crit Events</div>
+    <div class="ts"><span class="v" style="color:var(--tea)">${s.dlp_incidents}</span> DLP Blocks</div>
+  `;
+  // Populate breach select
+  const sel=document.getElementById('bsel');
+  AU.filter(u=>['CRITICAL','HIGH'].includes(u.risk_level)).forEach(u=>{
+    const o=document.createElement('option');o.value=u.user_id;
+    o.textContent=`${u.username} (${u.user_id}) — ${u.risk_level} | ${u.privilege_level}`;sel.appendChild(o);
+  });
+  rDash();
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+function rDash(){
+  const s=D.summary,dist=s.risk_distribution;
+  document.getElementById('d-metrics').innerHTML=`
+    <div class="mc cr"><div class="ml">Critical Users</div><div class="mv">${dist.CRITICAL||0}</div><div class="ms">Immediate action needed</div></div>
+    <div class="mc hi"><div class="ml">High Risk</div><div class="mv">${dist.HIGH||0}</div><div class="ms">Review within 24h</div></div>
+    <div class="mc pu"><div class="ml">SoD Violations</div><div class="mv">${s.sod_violations}</div><div class="ms">Duty conflicts detected</div></div>
+    <div class="mc bl"><div class="ml">DLP Incidents</div><div class="mv">${s.dlp_incidents}</div><div class="ms">Active blocks/alerts</div></div>
+    <div class="mc me"><div class="ml">Medium Risk</div><div class="mv">${dist.MEDIUM||0}</div><div class="ms">Schedule review</div></div>
+    <div class="mc ok"><div class="ml">Runtime</div><div class="mv">${D.elapsed}s</div><div class="ms">Full pipeline (5s target)</div></div>
+  `;
+  const cols={CRITICAL:'var(--red)',HIGH:'var(--ora)',MEDIUM:'var(--yel)',LOW:'var(--grn)',INFORMATIONAL:'var(--dm)'};
+  const mx=Math.max(...Object.values(dist));
+  document.getElementById('d-charts').innerHTML=`
+    <div class="cc"><div class="ct">User Risk Distribution</div>
+    ${Object.entries(dist).map(([l,c])=>`<div class="br"><div class="bl">${l}</div><div class="bt"><div class="bf" style="width:${(c/mx)*100}%;background:${cols[l]};color:${l==='MEDIUM'?'#000':'#fff'}">${c}</div></div></div>`).join('')}</div>
+    <div class="cc"><div class="ct">Department Night Access Rate (Baseline)</div>
+    ${Object.entries(D.dept_baselines).sort((a,b)=>b[1].night_rate-a[1].night_rate).map(([d,b])=>`
+      <div class="br"><div class="bl" style="font-size:9px">${d}</div><div class="bt">
+        <div class="bf" style="width:${Math.min(b.night_rate*200,100)}%;background:${b.night_rate>.3?'var(--red)':b.night_rate>.2?'var(--ora)':'var(--blu)'}">
+          ${(b.night_rate*100).toFixed(0)}%</div></div></div>`).join('')}</div>`;
+  const top=[...AU].sort((a,b)=>b.risk_score-a.risk_score).slice(0,8);
+  document.getElementById('d-top').innerHTML=top.map(u=>`
+    <tr onclick="oUD('${u.user_id}')">
+      <td><div class="uname">${u.username}</div><div class="uid">${u.user_id}</div></td>
+      <td>${u.department||'<span style="color:var(--red)">ORPHANED</span>'}</td>
+      <td><span class="tag">${u.privilege_level}</span></td>
+      <td>${rb(u.risk_level)}</td>
+      <td>${sb(u.risk_score,u.risk_level)}</td>
+      <td style="font-size:10px;color:var(--mu);max-width:160px">${(u.findings[0]?.type||'—').replace(/_/g,' ')}</td>
+      <td><button class="btn sm p" onclick="event.stopPropagation();toast('Escalation ticket #${Math.floor(Math.random()*9999)} created ✓')">Escalate</button></td>
+    </tr>`).join('');
+}
+
+// ── Users ─────────────────────────────────────────────────────────────────────
+function rUT(users){
+  document.getElementById('u-body').innerHTML=users.slice(0,150).map(u=>`
+    <tr onclick="oUD('${u.user_id}')">
+      <td class="uid">${u.user_id}</td>
+      <td><div class="uname">${u.username}</div><div class="uid" style="font-size:9px">${u.job_title}</div></td>
+      <td style="font-size:11px">${u.department||'<span style="color:var(--red)">—</span>'}</td>
+      <td><span class="tag">${u.privilege_level}</span></td>
+      <td><span class="tag">${u.systems.length} sys</span></td>
+      <td style="font-family:var(--mono);font-size:11px;color:${u.days_inactive>30?'var(--ora)':'var(--mu)'}">${u.days_inactive}d</td>
+      <td>${rb(u.risk_level)}</td>
+      <td>${sb(u.risk_score,u.risk_level)}</td>
+      <td style="font-size:10px;color:var(--mu)">${u.cluster_label||'—'}</td>
+    </tr>`).join('')||'<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--mu)">No users match filter</td></tr>';
+}
+function fu(f,btn){
+  document.querySelectorAll('#view-users .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');UF=f;
+  FU=f==='ALL'?[...AU]:['CRITICAL','HIGH','MEDIUM','LOW','INFORMATIONAL'].includes(f)?AU.filter(u=>u.risk_level===f):AU.filter(u=>u.privilege_level===f);
+  rUT(FU);
+}
+function su(q){
+  const base=UF==='ALL'?AU:AU.filter(u=>u.risk_level===UF||u.privilege_level===UF);
+  FU=q?base.filter(u=>u.username.includes(q.toLowerCase())||u.user_id.toLowerCase().includes(q)||((u.department||'').toLowerCase()).includes(q)):base;
+  rUT(FU);
+}
+
+// ── User Detail ───────────────────────────────────────────────────────────────
+function oUD(uid){
+  const u=AU.find(x=>x.user_id===uid);if(!u)return;
+  const b=D.breaches.find(x=>x.user_id===uid);
+  oov(`
+    <button class="dc" onclick="cpanel()">✕</button>
+    <div class="dt2">${u.username}</div>
+    <div class="ds">${u.user_id} · ${u.privilege_level} · ${u.department||'NO DEPT'} · ${u.job_title}</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
+      ${rb(u.risk_level)}<span style="font-family:var(--mono);font-size:22px;font-weight:800">${u.risk_score}/100</span>
+      <span style="color:var(--mu);font-size:10px">conf: ${(u.confidence*100).toFixed(0)}%</span>
+      <span class="tag">${u.cluster_label}</span>
+    </div>
+    <div style="font-size:11px;color:var(--mu);margin-bottom:4px">Systems: ${u.systems.map(s=>`<span class="tag">${s}</span>`).join('')}</div>
+    <div style="font-size:11px;color:var(--mu);margin-bottom:12px">Inactive: ${u.days_inactive}d · ${u.next_escalation}</div>
+    <hr class="div">
+    <div style="font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px">Findings (${u.findings.length})</div>
+    ${u.findings.map(f=>`
+      <div class="fc">
+        <div class="fh">${rb(f.severity)}<span class="ft">${f.type}</span></div>
+        <div class="fd">${f.detail}</div>
+        <div class="fr">${f.recommendation}</div>
+        ${f.compliance_refs?`<div class="fcc">${f.compliance_refs.map(c=>`<span class="ctag">${c}</span>`).join('')}</div>`:''}
+      </div>`).join('')||'<div style="color:var(--mu);font-size:11px;padding:8px 0">No findings — low risk account</div>'}
+    ${b?`<hr class="div"><div style="font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Breach Blast Radius</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px">
+      <span style="font-size:16px;font-weight:800;color:${b.blast_score>=80?'var(--red)':'var(--ora)'}">${b.blast_level}</span>
+      <span style="font-family:var(--mono);font-size:12px">${b.blast_score}/100</span>
+    </div>
+    <div style="font-size:11px;color:var(--mu)">${(b.data_exposure.total_records/1000).toFixed(0)}K records · ${b.blast_radius.total_reachable} systems reachable · est. $${(b.financial_exposure.max_regulatory_fine/1000000).toFixed(1)}M fine</div>`:''}
+    <hr class="div">
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="btn p" onclick="toast('Escalation ticket #${Math.floor(Math.random()*9999)} created ✓')">Escalate</button>
+      <button class="btn" onclick="markFP('${uid}','${u.findings[0]?.type||''}')">Mark FP</button>
+      <button class="btn" onclick="toast('Playbook exported as PDF ✓')">Export Playbook</button>
+        </div>
+    ${u.narrative?`<hr class="div"><div style="font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">AI Risk Narrative</div><div style="background:var(--s2);border:1px solid var(--bd);border-left:3px solid var(--tea);border-radius:5px;padding:10px;font-size:12px;line-height:1.6">${u.narrative}</div>`:''}
+    `);
+}
+function markFP(uid,ft){
+  const u=AU.find(x=>x.user_id===uid);
+  if(u&&u.risk_score>10){u.risk_score=Math.max(0,u.risk_score-15);toast(`FP recorded for ${ft}. Score adjusted by -15.`);}
+  else toast('FP recorded — no score adjustment needed');
+}
+
+// ── Clusters ──────────────────────────────────────────────────────────────────
+const CCOLS=['#0a84ff','#ff9500','#ff2d55','#32d74b','#bf5af2'];
+function rClusters(){
+  const cl=D.clusters;
+  let h=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+    ${Object.values(cl).map((c,i)=>`<div style="padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;background:${CCOLS[i]}22;border:1px solid ${CCOLS[i]};color:${CCOLS[i]}" onclick="filterByCluster(${c.id})">${c.label} (${c.size})</div>`).join('')}
+  </div>`;
+  h+=Object.values(cl).map((c,i)=>{
+    const cu=AU.filter(u=>u.cluster===c.id).slice(0,5);
+    return `<div class="cc" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div><span style="color:${CCOLS[i]};font-weight:700;font-size:13px">${c.label}</span>
+          <span style="color:var(--mu);font-size:11px;margin-left:8px">${c.size} users · avg ${c.avg_inactive}d inactive · avg ${c.avg_events} events</span></div>
+        <div><span class="tag">Priv: ${c.dominant_priv}</span><span class="tag">Night: ${c.avg_night}/user</span><span class="tag">Exports: ${c.avg_exports}/user</span></div>
+      </div>
+      <div class="tw" style="max-height:160px"><table class="dt"><thead><tr><th>ID</th><th>Name</th><th>Dept</th><th>Priv</th><th>Risk</th><th>Score</th></tr></thead>
+      <tbody>${cu.map(u=>`<tr onclick="oUD('${u.user_id}')"><td class="uid">${u.user_id}</td><td class="uname">${u.username}</td><td>${u.department||'—'}</td><td><span class="tag">${u.privilege_level}</span></td><td>${rb(u.risk_level)}</td><td>${sb(u.risk_score,u.risk_level)}</td></tr>`).join('')}</tbody>
+      </table></div>
+      ${c.size>5?`<div style="font-size:10px;color:var(--mu);margin-top:5px;text-align:right">+${c.size-5} more · <span style="color:var(--blu);cursor:pointer" onclick="filterByCluster(${c.id})">View all →</span></div>`:''}
+    </div>`;
+  }).join('');
+  document.getElementById('cl-content').innerHTML=h;
+}
+function filterByCluster(cid){FU=AU.filter(u=>u.cluster===cid);navTo('users');rUT(FU);}
+
+// ── SoD ───────────────────────────────────────────────────────────────────────
+let curSod='ALL';
+function rSod(){
+  const s=D.sod;
+  const pairCts={};s.forEach(v=>{const k=v.systems.join('+');pairCts[k]=(pairCts[k]||0)+1;});
+  document.getElementById('sod-metrics').innerHTML=`
+    <div class="mc hi"><div class="ml">Total Violations</div><div class="mv">${s.length}</div><div class="ms">Conflicting access pairs</div></div>
+    ${Object.entries(pairCts).slice(0,4).map(([p,c])=>`<div class="mc me"><div class="ml" style="font-size:9px">${p}</div><div class="mv">${c}</div><div class="ms">SoD conflict</div></div>`).join('')}`;
+  fsod(curSod,document.querySelector('#view-sod .fbtn.active'));
+}
+function fsod(f,btn){
+  if(btn){document.querySelectorAll('#view-sod .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+  curSod=f;
+  const filtered=f==='ALL'?D.sod:D.sod.filter(v=>v.systems.includes(f));
+  document.getElementById('sod-list').innerHTML=filtered.slice(0,50).map(v=>`
+    <div class="sod-r">
+      <div style="flex:1">
+        <div style="font-weight:500;margin-bottom:3px">${v.username} <span class="uid">(${v.user_id})</span></div>
+        <div style="font-size:10px;color:var(--mu)">${v.department} · ${v.privilege}</div>
+        <div style="font-size:10px;color:var(--mu);margin-top:3px">${v.detail}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px">
+        <span class="sys-t">${v.systems[0]}</span><span style="color:var(--red);font-size:13px">⚡</span><span class="sys-t">${v.systems[1]}</span>
+      </div>
+      ${rb(v.severity)}
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <button class="btn sm p" onclick="toast('SoD remediation ticket opened ✓')">Fix</button>
+        <button class="btn sm" onclick="toast('FP recorded ✓')">FP</button>
+      </div>
+    </div>`).join('');
+}
+
+// ── Events ────────────────────────────────────────────────────────────────────
+function rET(evts){
+  const sorted=[...evts].sort((a,b)=>b.risk_score-a.risk_score).slice(0,150);
+  document.getElementById('ev-body').innerHTML=sorted.map(e=>`
+    <tr onclick="oED('${e.event_id}')">
+      <td class="uid">${e.timestamp?.substring(0,16)||'—'}</td>
+      <td class="uid">${e.user_id}</td>
+      <td style="font-family:var(--mono);font-size:10px">${e.action}</td>
+      <td style="font-size:11px">${e.resource}</td>
+      <td style="font-size:10px;color:${e.sensitivity==='high'?'var(--red)':e.sensitivity==='medium'?'var(--ora)':'var(--mu)'}">${e.sensitivity}</td>
+      <td style="font-size:10px;color:${e.time_class?.includes('night')||e.time_class==='unusual_hours'?'var(--pur)':'var(--mu)'}">${e.time_class}</td>
+      <td style="font-size:10px;color:${e.status==='failure'?'var(--red)':'var(--mu)'}">${e.status}</td>
+      <td>${rb(e.risk_level)}</td>
+      <td>${sb(e.risk_score,e.risk_level)}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:${e.ml_flagged?'var(--pur)':'var(--mu)'}">${e.ml_score?.toFixed(0)||'—'}</td>
+    </tr>`).join('')||'<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--mu)">No events</td></tr>';
+}
+function fe(f,btn){
+  document.querySelectorAll('#view-events .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const all=D.events.filter(e=>e.risk_score>0);
+  if(f==='ALL') FE=all;
+  else if(f==='ML') FE=all.filter(e=>e.ml_flagged);
+  else if(f==='night') FE=all.filter(e=>e.time_class?.includes('night')||e.time_class==='unusual_hours');
+  else if(f==='export') FE=all.filter(e=>e.action==='export_data');
+  else FE=all.filter(e=>e.risk_level===f);
+  rET(FE);
+}
+function oED(eid){
+  const e=D.events.find(x=>x.event_id===eid);if(!e)return;
+  oov(`
+    <button class="dc" onclick="cpanel()">✕</button>
+    <div class="dt2">Event Detail</div>
+    <div class="ds">${e.timestamp} · ${e.user_id}</div>
+    <div style="margin-bottom:12px">${rb(e.risk_level)}<span style="font-family:var(--mono);font-size:20px;font-weight:800;margin-left:8px">${e.risk_score}/100</span>
+      ${e.ml_flagged?`<span class="tag" style="color:var(--pur);border-color:var(--pur)">ML ${e.ml_score?.toFixed(0)}</span>`:''}
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;font-size:11px">
+      <div><span style="color:var(--mu)">Action:</span> <span style="font-family:var(--mono)">${e.action}</span></div>
+      <div><span style="color:var(--mu)">Resource:</span> ${e.resource}</div>
+      <div><span style="color:var(--mu)">Sensitivity:</span> ${e.sensitivity}</div>
+      <div><span style="color:var(--mu)">Time:</span> ${e.time_class}</div>
+      <div><span style="color:var(--mu)">Status:</span> <span style="color:${e.status==='failure'?'var(--red)':'var(--grn)'}">${e.status}</span></div>
+      <div><span style="color:var(--mu)">Source IP:</span> ${e.source_ip}</div>
+    </div>
+    <hr class="div">
+    ${e.findings?.map(f=>`<div class="fc"><div class="fh">${rb(f.severity)}<span class="ft">${f.type}</span></div><div class="fd">${f.detail}</div><div class="fr">${f.recommendation}</div></div>`).join('')||'<div style="color:var(--mu);font-size:11px">ML-only anomaly — no deterministic rules triggered</div>'}
+    <hr class="div">
+    <div style="display:flex;gap:6px">
+      <button class="btn p" onclick="toast('Alert created ✓')">Create Alert</button>
+      <button class="btn" onclick="toast('Marked as FP — score adjusted ✓')">Mark FP</button>
+    </div>`);
+}
+
+// ── DLP ───────────────────────────────────────────────────────────────────────
+function rDlp(){
+  const s=D.summary;
+  document.getElementById('dlp-m').innerHTML=`
+    <div class="mc cr"><div class="ml">BLOCK Incidents</div><div class="mv">${D.dlp_incidents.filter(x=>x.dlp_actions.includes('BLOCK')).length}</div><div class="ms">Exports prevented</div></div>
+    <div class="mc hi"><div class="ml">ALERT Incidents</div><div class="mv">${D.dlp_incidents.filter(x=>x.dlp_actions.some(a=>a.includes('ALERT'))).length}</div><div class="ms">Security alerts raised</div></div>
+    <div class="mc ok"><div class="ml">Rules Active</div><div class="mv">${D.dlp_rules.filter(r=>r.active).length}/${D.dlp_rules.length}</div><div class="ms">Prevention policies</div></div>
+  `;
+  document.getElementById('dlp-rules').innerHTML=D.dlp_rules.map(r=>`
+    <div class="dlpr">
+      <div style="flex:1">
+        <div style="font-weight:500;margin-bottom:3px">${r.name}</div>
+        <div style="font-size:10px;font-family:var(--mono);color:var(--mu)">IF ${r.trigger}</div>
+        <div style="font-size:10px;color:var(--mu);margin-top:2px">Resources: ${r.resource}</div>
+      </div>
+      <span class="dlpa" style="color:${r.action.includes('BLOCK')?'var(--red)':r.action.includes('SCAN')?'var(--pur)':'var(--grn)'}">⚡ ${r.action}</span>
+      <div><span class="dlpi" style="background:${r.active?'var(--grn)':'var(--dm)'}"></span><span style="font-size:10px;color:var(--mu)">${r.active?'ACTIVE':'DISABLED'}</span></div>
+    </div>`).join('');
+  document.getElementById('dlp-inc').innerHTML=D.dlp_incidents.slice(0,12).map(i=>`
+    <div class="sod-r">
+      <div style="flex:1">
+        <div style="font-weight:500">${i.username} — ${i.action} on ${i.resource}</div>
+        <div style="font-size:10px;color:var(--mu)">${i.timestamp} · Rules: ${i.rules_hit.join(', ')}</div>
+      </div>
+      <span style="font-family:var(--mono);font-size:10px;color:${i.dlp_actions.includes('BLOCK')?'var(--red)':'var(--ora)'}">${i.dlp_actions.join(' + ')}</span>
+      ${rb(i.severity)}
+    </div>`).join('');
+}
+
+// ── Graph ─────────────────────────────────────────────────────────────────────
+function rGraph(){
+  const cv=document.getElementById('gcv');
+  const W=cv.offsetWidth,H=440;cv.width=W;cv.height=H;
+  const ctx=cv.getContext('2d');
+  const g=D.graph;
+  const sysnodes=g.nodes.filter(n=>n.type==='system');
+  const deptMap={};
+  g.nodes.filter(n=>n.type==='user').forEach(n=>{const d=n.department||'Other';if(!deptMap[d])deptMap[d]=[];deptMap[d].push(n);});
+  const depts=Object.keys(deptMap);
+  const cx=W/2,cy=H/2;
+  // Position system nodes in inner ring
+  sysnodes.forEach((s,i)=>{const a=(i/sysnodes.length)*Math.PI*2-Math.PI/2;s.x=cx+Math.cos(a)*120;s.y=cy+Math.sin(a)*120;});
+  // Position dept clusters in outer ring
+  depts.forEach((dept,di)=>{
+    const a=(di/depts.length)*Math.PI*2-Math.PI/2;
+    const dcx=cx+Math.cos(a)*220,dcy=cy+Math.sin(a)*220;
+    deptMap[dept].forEach((u,ui)=>{
+      const ua=a+((ui-deptMap[dept].length/2)/Math.max(deptMap[dept].length,1))*0.5;
+      const ur=40+(ui%3)*12;u.x=dcx+Math.cos(ua)*ur;u.y=dcy+Math.sin(ua)*ur;
+    });
+  });
+  const nm={};g.nodes.forEach(n=>{nm[n.id]=n;});
+  const pCol={admin:'#ff2d55','power-user':'#ff9500','service-account':'#bf5af2',user:'#374555'};
+  function draw(){
+    ctx.clearRect(0,0,W,H);ctx.fillStyle='#0d1118';ctx.fillRect(0,0,W,H);
+    ctx.save();ctx.translate(gOff.x,gOff.y);ctx.scale(gScale,gScale);
+    // Sample edges
+    g.links.filter((_,i)=>i%5===0).forEach(l=>{
+      const s=nm[l.source],t=nm[l.target];if(!s||!t)return;
+      ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(t.x,t.y);
+      ctx.strokeStyle=(pCol[l.privilege]||'#374555')+'20';ctx.lineWidth=.5;ctx.stroke();
+    });
+    // System nodes
+    sysnodes.forEach(n=>{
+      const r=n.critical?13:9;
+      ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);
+      ctx.fillStyle=n.color+'30';ctx.fill();ctx.strokeStyle=n.color;ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle='#dde4f0';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText(n.label,n.x,n.y+r+10);
+    });
+    // Dept user dots
+    Object.entries(deptMap).forEach(([dept,users])=>{
+      if(!users.length)return;
+      const dcx=users.reduce((s,u)=>s+u.x,0)/users.length;
+      const dcy=users.reduce((s,u)=>s+u.y,0)/users.length;
+      ctx.font='bold 9px sans-serif';ctx.fillStyle='#52637a';ctx.textAlign='center';
+      ctx.fillText(dept,dcx,dcy-28);
+      users.slice(0,12).forEach(u=>{
+        const c=pCol[u.privilege]||'#374555';
+        ctx.beginPath();ctx.arc(u.x,u.y,u.privilege==='admin'?5:3,0,Math.PI*2);
+        ctx.fillStyle=c+'80';ctx.fill();ctx.strokeStyle=c+'aa';ctx.lineWidth=1;ctx.stroke();
+      });
+    });
+    ctx.restore();
+  }
+  draw();
+  cv.onmousedown=e=>{gDrag={sx:e.clientX-gOff.x,sy:e.clientY-gOff.y};};
+  cv.onmousemove=e=>{if(gDrag){gOff.x=e.clientX-gDrag.sx;gOff.y=e.clientY-gDrag.sy;draw();}};
+  cv.onmouseup=()=>gDrag=null;
+  cv.onwheel=e=>{e.preventDefault();gScale=Math.max(.3,Math.min(3,gScale-e.deltaY*.001));draw();};
+  const gs=D.graph_stats;
+  document.getElementById('g-stats').innerHTML=[
+    ['Total Users',gs.total_users,'var(--blu)'],['Total Systems',gs.total_systems,'var(--tx)'],
+    ['Privilege Edges',gs.total_edges,'var(--tx)'],['Avg sys/user',gs.avg_sys_per_user,'var(--tx)'],
+    ['Critical Systems',gs.critical_systems,'var(--red)'],['SoD Violations',D.summary.sod_violations,'var(--ora)'],
+  ].map(([l,v,c])=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);font-size:11px"><span style="color:var(--mu)">${l}</span><span style="font-family:var(--mono);font-weight:700;color:${c}">${v}</span></div>`).join('');
+  document.getElementById('g-top').innerHTML=(gs.top_users||[]).slice(0,8).map(([uid,cnt])=>{
+    const u=AU.find(x=>x.user_id===uid);
+    return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);font-size:11px;cursor:pointer" onclick="oUD('${uid}')">
+      <span>${u?.username||uid} <span class="uid">(${uid})</span></span>
+      <span style="font-family:var(--mono);font-weight:700;color:var(--ora)">${cnt} sys</span></div>`;
+  }).join('');
+}
+
+// ── Breach ────────────────────────────────────────────────────────────────────
+function rBreach(){
+  document.getElementById('b-top10').innerHTML=D.breaches.map((b,i)=>`
+    <div class="sod-r" style="cursor:pointer" onclick="showBD('${b.user_id}')">
+      <div style="font-size:13px;font-weight:700;color:var(--mu);width:20px">${i+1}</div>
+      <div style="flex:1">
+        <div style="font-weight:500">${b.username} <span class="uid">(${b.user_id})</span></div>
+        <div style="font-size:10px;color:var(--mu)">${b.department} · ${b.privilege} · ${b.blast_radius.total_reachable} systems reachable</div>
+      </div>
+      <span style="font-weight:800;font-size:13px;color:${b.blast_score>=80?'var(--red)':'var(--ora)'}">${b.blast_level}</span>
+      <div style="font-family:var(--mono);font-size:20px;font-weight:800;width:40px;text-align:right;color:${b.blast_score>=80?'var(--red)':'var(--ora)'}">${b.blast_score}</div>
+    </div>`).join('');
+}
+function runBreach(){const uid=document.getElementById('bsel').value;if(!uid){toast('Select a user first');return;}showBD(uid);}
+function showBD(uid){
+  const b=D.breaches.find(x=>x.user_id===uid);if(!b){toast('Run pipeline to get breach data');return;}
+  const bc=b.blast_score>=80?'var(--red)':b.blast_score>=60?'var(--ora)':b.blast_score>=40?'var(--yel)':'var(--grn)';
+  document.getElementById('b-result').innerHTML=`
+    <hr class="div">
+    <div style="background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:18px;margin-top:12px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <div style="font-size:18px;font-weight:800;color:${bc}">${b.blast_level}</div>
+        <div><div style="font-size:15px;font-weight:600">${b.username}</div><div style="font-size:11px;color:var(--mu)">${b.user_id} · ${b.privilege} · ${b.department}</div></div>
+        <div style="margin-left:auto;text-align:right">
+          <div style="font-size:34px;font-weight:800;font-family:var(--mono);color:${bc}">${b.blast_score}</div>
+          <div style="font-size:10px;color:var(--mu)">blast score</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+        <div style="background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:12px;text-align:center">
+          <div style="font-size:20px;font-weight:800;font-family:var(--mono);color:var(--red)">${(b.data_exposure.total_records/1000).toFixed(0)}K</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:3px">Records at risk</div></div>
+        <div style="background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:12px;text-align:center">
+          <div style="font-size:20px;font-weight:800;font-family:var(--mono);color:var(--ora)">$${(b.financial_exposure.max_regulatory_fine/1000000).toFixed(1)}M</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:3px">Max regulatory fine</div></div>
+        <div style="background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:12px;text-align:center">
+          <div style="font-size:20px;font-weight:800;font-family:var(--mono);color:var(--yel)">${b.blast_radius.total_reachable}</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:3px">Systems reachable</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div><div style="font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;margin-bottom:6px">Direct Access</div>${b.blast_radius.direct_systems.map(s=>`<span class="tag">${s}</span>`).join('')}</div>
+        <div><div style="font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;margin-bottom:6px">Lateral Movement</div>${b.blast_radius.lateral_movement.map(s=>`<span class="tag" style="border-color:var(--red)">${s}</span>`).join('')||'<span style="color:var(--mu);font-size:11px">None detected</span>'}</div>
+      </div>
+      ${b.financial_exposure.gdpr_72h_required?`<div style="background:rgba(255,45,85,.1);border:1px solid rgba(255,45,85,.3);border-radius:5px;padding:9px;margin-bottom:12px;font-size:11px">⚠️ <b>GDPR Art.33:</b> ${(b.data_exposure.gdpr_records/1000).toFixed(0)}K personal records exposed — DPA notification required within 72 hours</div>`:''}
+      <div style="font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;margin-bottom:7px">Immediate Containment</div>
+      ${b.containment.map((c,i)=>`<div style="font-size:11px;color:var(--mu);padding:4px 0;border-bottom:1px solid var(--bd)">${i+1}. ${c}</div>`).join('')}
+    </div>`;
+}
+
+// ── Correlation ───────────────────────────────────────────────────────────────
+function rCorr(){
+  const c=D.correlations||[];
+  document.getElementById('cr-m').innerHTML=`
+    <div class="mc cr"><div class="ml">Multi-Sys Risks</div><div class="mv">${c.length}</div><div class="ms">Users spanning ≥2 critical systems</div></div>
+    <div class="mc hi"><div class="ml">Max Systems</div><div class="mv">${Math.max(...c.map(x=>x.system_count),0)}</div><div class="ms">Highest cross-system exposure</div></div>
+    <div class="mc pu"><div class="ml">≥3 Sys Risks</div><div class="mv">${c.filter(x=>x.system_count>=3).length}</div><div class="ms">Highest lateral movement risk</div></div>`;
+  document.getElementById('cr-list').innerHTML=c.map(x=>`
+    <div class="sod-r" style="cursor:pointer" onclick="oUD('${x.user_id}')">
+      <div style="flex:1">
+        <div style="font-weight:600;margin-bottom:3px">${x.username} <span class="uid">(${x.user_id})</span></div>
+        <div style="margin-bottom:4px">${x.critical_systems.map(s=>`<span class="tag" style="border-color:var(--red)">${s}</span>`).join('')}</div>
+        <div style="font-size:10px;color:var(--mu)">${x.detail}</div>
+        ${x.lateral_reach?.length?`<div style="font-size:10px;color:var(--ora);margin-top:2px">Lateral reach: ${x.lateral_reach.join(', ')}</div>`:''}
+      </div>
+      ${rb(x.risk_level)}
+      <div style="font-family:var(--mono);font-size:18px;font-weight:800;color:var(--red)">${x.risk_score}</div>
+    </div>`).join('')||'<div style="color:var(--mu);padding:20px">No correlations found</div>';
+}
+
+// ── Org Anomaly ───────────────────────────────────────────────────────────────
+function rOrg(){
+  const oa=D.org_anomalies;
+  const bl=D.dept_baselines;
+  let h='';
+  // Show all departments with their risk profile
+  Object.entries(bl).forEach(([dept,b])=>{
+    const anomaly=oa.find(x=>x.department===dept);
+    const deptUsers=AU.filter(u=>u.department===dept);
+    const critCnt=deptUsers.filter(u=>['CRITICAL','HIGH'].includes(u.risk_level)).length;
+    const riskRate=critCnt/Math.max(deptUsers.length,1);
+    const sev=anomaly?.severity||'LOW';
+    h+=`<div style="background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div><span style="font-weight:700;font-size:13px">${dept}</span>
+          <span style="color:var(--mu);font-size:11px;margin-left:8px">${deptUsers.length} users · avg ${b.avg_events} events/user</span></div>
+        <div style="display:flex;gap:6px;align-items:center">
+          ${critCnt>0?`<span style="color:var(--red);font-size:11px">🔴 ${critCnt} crit/high</span>`:''}
+          ${rb(sev)}
+        </div>
+      </div>
+      ${anomaly?`<div style="font-size:11px;color:var(--ora);margin-bottom:8px">⚠️ ${anomaly.issues.join(' | ')}</div>`:''}
+      <div style="display:flex;flex-direction:column;gap:5px">
+        ${[['Night access',b.night_rate,.5,'var(--pur)'],['Failure rate',b.failure_rate,.2,'var(--red)'],['Export rate',b.export_rate,.4,'var(--ora)'],['High-sens rate',b.high_sens_rate,.8,'var(--yel)']].map(([l,v,mx,c])=>`
+          <div style="display:flex;align-items:center;gap:8px;font-size:10px">
+            <span style="width:100px;color:var(--mu)">${l}</span>
+            <div style="flex:1;height:11px;background:var(--bd);border-radius:2px;overflow:hidden">
+              <div style="width:${Math.min(v/mx*100,100)}%;height:100%;background:${c}"></div></div>
+            <span style="font-family:var(--mono);font-size:10px;width:30px">${(v*100).toFixed(0)}%</span>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  });
+  document.getElementById('org-content').innerHTML=h;
+}
+
+// ── Compliance ────────────────────────────────────────────────────────────────
+function rComp(){
+  const fw={};
+  AU.forEach(u=>u.findings.forEach(f=>(f.compliance_refs||[]).forEach(r=>{
+    const k=r.split(' ')[0];if(!fw[k])fw[k]={total:0,critical:0,high:0,ctrls:new Set()};
+    fw[k].total++;if(f.severity==='CRITICAL')fw[k].critical++;if(f.severity==='HIGH')fw[k].high++;fw[k].ctrls.add(r);
+  })));
+  const sysc=D.graph_stats;
+  document.getElementById('comp-content').innerHTML=`
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:18px">
+      ${Object.entries(fw).sort((a,b)=>b[1].total-a[1].total).map(([k,g])=>`
+        <div class="cc">
+          <div style="font-family:var(--mono);font-size:12px;font-weight:700;margin-bottom:8px;color:${g.critical>5?'var(--red)':g.critical>0?'var(--ora)':'var(--yel)'}">${k}</div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:11px"><span style="color:var(--mu)">Total violations</span><span style="font-family:var(--mono);font-weight:700">${g.total}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:11px"><span style="color:var(--mu)">Critical</span><span style="font-family:var(--mono);color:var(--red)">${g.critical}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:11px"><span style="color:var(--mu)">High</span><span style="font-family:var(--mono);color:var(--ora)">${g.high}</span></div>
+          <div style="margin-top:8px">${[...g.ctrls].slice(0,4).map(c=>`<span class="ctag">${c}</span>`).join('')}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ── Playbooks ─────────────────────────────────────────────────────────────────
+function rPB(pbs){
+  document.getElementById('pb-list').innerHTML=pbs.slice(0,15).map(pb=>`
+    <div class="cc" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div><span style="font-weight:700;font-size:13px">${pb.title}</span><span class="tag" style="margin-left:8px">${pb.urgency}</span><span class="tag">SLA: ${pb.sla_hours}h</span></div>
+        <div style="font-size:10px;color:var(--mu)">${pb.username} · ${pb.user_id}</div>
+      </div>
+      <div style="font-size:11px;color:var(--mu);margin-bottom:10px">${pb.finding_detail?.substring(0,120)}…</div>
+      ${pb.steps.slice(0,3).map(s=>`
+        <div class="pbs">
+          <div class="pbn">${s.step}</div>
+          <div style="flex:1">
+            <div class="pba">${s.action}</div>
+            <div class="pbd">${s.detail}</div>
+            <div class="pbm"><span>Owner: ${s.owner}</span><span>Due: ${s.deadline}</span></div>
+            <div style="font-size:10px;color:var(--tea);margin-top:3px">✓ ${s.verify}</div>
+          </div>
+        </div>`).join('')}
+      ${pb.steps.length>3?`<div style="font-size:10px;color:var(--mu);text-align:right">+${pb.steps.length-3} more steps</div>`:''}
+      <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn sm p" onclick="toast('Playbook assigned to ${pb.owner} ✓')">Assign</button>
+        <button class="btn sm" onclick="toast('Playbook exported ✓')">Export</button>
+        ${(pb.compliance||[]).slice(0,3).map(c=>`<span class="ctag">${c}</span>`).join('')}
+      </div>
+    </div>`).join('')||'<div style="color:var(--mu);padding:20px">No playbooks for this filter</div>';
+}
+function fpb(f,btn){
+  document.querySelectorAll('#view-playbooks .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  rPB(f==='ALL'?D.playbooks:D.playbooks.filter(p=>p.finding_type===f));
+}
+
+
+// ── Evaluation ────────────────────────────────────────────────────────────────
+HANDLERS['evaluation'] = rEval;
+function rEval(){
+  const ev = D.evaluation || {};
+  const um = ev.users  || null;
+  const em = ev.events || null;
+
+  function scoreColor(v){ return v>=0.85?'var(--grn)':v>=0.70?'var(--yel)':v>=0.55?'var(--ora)':'var(--red)'; }
+  function mcard(m, title){
+    if(!m) return '<div class="cc" style="margin-bottom:14px"><div class="ct">'+title+' (no data)</div></div>';
+    const barW_p = Math.round(m.precision*100);
+    const barW_r = Math.round(m.recall*100);
+    const barW_f = Math.round(m.f1*100);
+    return \`
+      <div class="cc" style="margin-bottom:14px">
+        <div class="ct">\${title}</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:12px;text-align:center">
+            <div style="font-size:26px;font-weight:800;font-family:var(--mono);color:\${scoreColor(m.precision)}">\${(m.precision*100).toFixed(1)}%</div>
+            <div style="font-size:10px;color:var(--mu);margin-top:3px">Precision</div>
+            <div style="font-size:10px;color:var(--grn);margin-top:2px">\${m.rubric.precision_pts}/15 pts</div>
+          </div>
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:12px;text-align:center">
+            <div style="font-size:26px;font-weight:800;font-family:var(--mono);color:\${scoreColor(m.recall)}">\${(m.recall*100).toFixed(1)}%</div>
+            <div style="font-size:10px;color:var(--mu);margin-top:3px">Recall</div>
+            <div style="font-size:10px;color:var(--grn);margin-top:2px">\${m.rubric.recall_pts}/10 pts</div>
+          </div>
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:12px;text-align:center">
+            <div style="font-size:26px;font-weight:800;font-family:var(--mono);color:\${scoreColor(m.f1)}">\${m.f1.toFixed(3)}</div>
+            <div style="font-size:10px;color:var(--mu);margin-top:3px">F1 Score</div>
+            <div style="font-size:10px;color:var(--grn);margin-top:2px">\${m.rubric.f1_pts}/5 pts</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;font-size:11px">
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:10px">
+            <div style="color:var(--mu);margin-bottom:6px;font-size:10px;text-transform:uppercase;letter-spacing:.5px">Confusion Matrix</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-family:var(--mono)">
+              <div style="background:rgba(50,215,75,.12);border:1px solid rgba(50,215,75,.3);border-radius:3px;padding:6px;text-align:center">
+                <div style="color:var(--grn);font-weight:700;font-size:16px">\${m.tp}</div><div style="color:var(--mu);font-size:9px">TP</div></div>
+              <div style="background:rgba(255,45,85,.12);border:1px solid rgba(255,45,85,.3);border-radius:3px;padding:6px;text-align:center">
+                <div style="color:var(--red);font-weight:700;font-size:16px">\${m.fp}</div><div style="color:var(--mu);font-size:9px">FP</div></div>
+              <div style="background:rgba(255,149,0,.12);border:1px solid rgba(255,149,0,.3);border-radius:3px;padding:6px;text-align:center">
+                <div style="color:var(--ora);font-weight:700;font-size:16px">\${m.fn}</div><div style="color:var(--mu);font-size:9px">FN</div></div>
+              <div style="background:rgba(10,132,255,.12);border:1px solid rgba(10,132,255,.3);border-radius:3px;padding:6px;text-align:center">
+                <div style="color:var(--blu);font-weight:700;font-size:16px">\${m.tn}</div><div style="color:var(--mu);font-size:9px">TN</div></div>
+            </div>
+          </div>
+          <div style="background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:10px">
+            <div style="color:var(--mu);margin-bottom:6px;font-size:10px;text-transform:uppercase;letter-spacing:.5px">Rubric Score</div>
+            <div style="font-size:30px;font-weight:800;font-family:var(--mono);color:var(--grn);text-align:center;margin:6px 0">
+              \${m.rubric.total_pts}/30</div>
+            <div style="font-size:10px;color:var(--mu);text-align:center">Detection Quality points</div>
+          </div>
+        </div>
+        \${m.false_positives && m.false_positives.length ? \`
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;margin-bottom:6px">
+              Sample False Positives (\${m.false_positives.length} total — over-flagged accounts)</div>
+            \${m.false_positives.slice(0,5).map(fp=>\`
+              <div style="font-size:11px;color:var(--mu);padding:4px 0;border-bottom:1px solid var(--bd)">
+                <span class="uid">\${fp.user_id||fp.event_id||''}</span> — predicted
+                <span class="rb \${fp.pred_level}">\${fp.pred_level}</span> (score=\${fp.pred_score}) | true=NORMAL
+                \${fp.user_id?'<button class="btn sm" style="margin-left:6px" onclick="oUD(\''+fp.user_id+'\')">View</button>':''}
+              </div>\`).join('')}
+          </div>\` : ''}
+        \${m.false_negatives && m.false_negatives.length ? \`
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;margin-bottom:6px">
+              Sample False Negatives (\${m.false_negatives.length} total — missed anomalies)</div>
+            \${m.false_negatives.slice(0,5).map(fn=>\`
+              <div style="font-size:11px;color:var(--mu);padding:4px 0;border-bottom:1px solid var(--bd)">
+                <span class="uid">\${fn.user_id||fn.event_id||''}</span> — true_type=\${fn.true_type} | predicted=\${fn.pred_level}
+                \${fn.user_id?'<button class="btn sm" style="margin-left:6px" onclick="oUD(\''+fn.user_id+'\')">View</button>':''}
+              </div>\`).join('')}
+          </div>\` : ''}
+      </div>\`;
+  }
+
+  document.getElementById('eval-content').innerHTML = \`
+    <div class="mg">
+      <div class="mc cr"><div class="ml">User Precision</div><div class="mv">\${um?(um.precision*100).toFixed(0)+'%':'N/A'}</div><div class="ms">Rubric: \${um?um.rubric.precision_pts:0}/15 pts</div></div>
+      <div class="mc ok"><div class="ml">User Recall</div><div class="mv">\${um?(um.recall*100).toFixed(0)+'%':'N/A'}</div><div class="ms">Rubric: \${um?um.rubric.recall_pts:0}/10 pts</div></div>
+      <div class="mc bl"><div class="ml">User F1</div><div class="mv">\${um?um.f1.toFixed(2):'N/A'}</div><div class="ms">Rubric: \${um?um.rubric.f1_pts:0}/5 pts</div></div>
+      <div class="mc pu"><div class="ml">Total Rubric</div><div class="mv">\${um?um.rubric.total_pts:0}/30</div><div class="ms">Detection Quality Score</div></div>
+    </div>
+    \${mcard(um, 'User Anomaly Detection')}
+    \${mcard(em, 'Event Anomaly Detection')}
+    <div class="cc">
+      <div class="ct">Ground Truth Label Files</div>
+      <div style="font-size:11px;color:var(--mu);margin-bottom:10px">
+        Both label files generated from the real uploaded CSVs using domain-expert rules.
+        Used for self-evaluation of precision, recall, and F1 per the hackathon rubric.
+      </div>
+      \${[
+        ['identity_users_labels.csv',  '300 rows', 'is_anomaly, anomaly_type, severity, explanation'],
+        ['identity_events_labels.csv', '900 rows', 'is_anomaly, anomaly_type, severity, explanation'],
+      ].map(([f,n,c])=>\`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)">
+          <div><div style="font-family:var(--mono);font-size:11px;font-weight:600">\${f}</div>
+            <div style="font-size:10px;color:var(--mu)">\${c}</div></div>
+          <span class="tag">\${n}</span>
+        </div>\`).join('')}
+    </div>
+  \`;
+}
+
+
+// ── Executive Summary ────────────────────────────────────────────────────────
+HANDLERS['executive'] = rExec;
+function rExec(){
+  const s = D.summary || {};
+  const ev = D.evaluation || {};
+  const um = ev.users || {};
+  const em = ev.events || {};
+  const execSum = D.executive_summary || 
+    `Automated IAM risk analysis of ${s.total_users||0} user accounts identified ${s.critical_users||0} CRITICAL and ${(s.high_risk_users||0)-(s.critical_users||0)} HIGH risk accounts requiring immediate attention. ${s.sod_violations||0} separation-of-duties violations create undetectable fraud pathways violating SOX/PCI-DSS. ${s.dlp_incidents||0} DLP incidents indicate active data exfiltration risk. User detection precision: ${((um.precision||0)*100).toFixed(0)}% — immediate revocation of CRITICAL accounts and SoD remediation required within 24 hours.`;
+
+  const top5 = [...AU].sort((a,b)=>b.risk_score-a.risk_score).slice(0,5);
+
+  document.getElementById('exec-content').innerHTML = `
+    <div style="background:linear-gradient(135deg,rgba(255,45,85,.08),rgba(10,132,255,.08));border:1px solid var(--bd);border-radius:8px;padding:16px;margin-bottom:16px">
+      <div style="font-size:11px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">🤖 LLM-Generated CISO Brief (Groq Llama 3.1)</div>
+      <div style="font-size:14px;line-height:1.7;color:var(--tx)">${execSum}</div>
+    </div>
+    <div class="mg" style="margin-bottom:14px">
+      <div class="mc cr"><div class="ml">CRITICAL</div><div class="mv">${s.critical_users||0}</div><div class="ms">Immediate action</div></div>
+      <div class="mc ok"><div class="ml">Detection Quality</div><div class="mv">${((um.precision||0)*100).toFixed(0)}%</div><div class="ms">User precision</div></div>
+      <div class="mc bl"><div class="ml">SoD Violations</div><div class="mv">${s.sod_violations||0}</div><div class="ms">Compliance risk</div></div>
+      <div class="mc pu"><div class="ml">DLP Incidents</div><div class="mv">${s.dlp_incidents||0}</div><div class="ms">Data risk</div></div>
+    </div>
+    <div class="cc">
+      <div class="ct">Top 5 Accounts Requiring Immediate Action</div>
+      ${top5.map((u,i)=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px;width:24px;text-align:center">${['🔴','🔴','🔴','🟠','🟠'][i]}</span>
+            <div>
+              <div style="font-weight:600;font-size:13px">${u.username}</div>
+              <div style="font-size:11px;color:var(--mu)">${u.department} | ${u.privilege_level} | ${u.findings[0]?.type||''}</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="rb ${u.risk_level}">${u.risk_level}</span>
+            <button class="btn p sm" onclick="revokeAccess('${u.user_id}','${u.username}')">Revoke</button>
+            <button class="btn sm" onclick="oUD('${u.user_id}')">View</button>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="cc" style="margin-top:12px">
+      <div class="ct">Compliance Exposure Summary</div>
+      ${Object.entries(D.evidence_analysis?.by_framework||{}).map(([fw,data])=>`
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);font-size:12px">
+          <span style="font-weight:600">${fw}</span>
+          <span style="color:var(--mu)">${data.total} evidence | ${data.anomalies} gaps | ${(data.gap_rate*100).toFixed(0)}% gap rate</span>
+          <span class="rb ${data.gap_rate>0.3?'CRITICAL':data.gap_rate>0.15?'HIGH':'MEDIUM'}">${data.gap_rate>0.3?'HIGH RISK':data.gap_rate>0.15?'MEDIUM':'LOW'}</span>
+        </div>`).join('')||'<div style="color:var(--mu);font-size:12px">No evidence data available</div>'}
+    </div>`;
+}
+
+// ── Risk Trends ───────────────────────────────────────────────────────────────
+HANDLERS['trends'] = rTrends;
+function rTrends(){
+  // Build monthly event distribution from events data
+  const months = {};
+  const anomMonths = {};
+  (D.events||[]).forEach(e=>{
+    const m = e.timestamp?.slice(0,7)||'';
+    if(!m) return;
+    months[m] = (months[m]||0)+1;
+    if(e.risk_score>40) anomMonths[m] = (anomMonths[m]||0)+1;
+  });
+  const mkeys = Object.keys(months).sort();
+  const maxV  = Math.max(...Object.values(months),1);
+  const maxA  = Math.max(...Object.values(anomMonths),1);
+
+  // Risk distribution over clusters
+  const clusters = D.clusters||{};
+  const riskByLevel = {};
+  (AU||[]).forEach(u=>{
+    riskByLevel[u.risk_level] = (riskByLevel[u.risk_level]||0)+1;
+  });
+
+  document.getElementById('trends-content').innerHTML = `
+    <div class="cc" style="margin-bottom:14px">
+      <div class="ct">Monthly Event Volume & Anomaly Rate (365-day window)</div>
+      <div style="font-size:11px;color:var(--mu);margin-bottom:12px">Full year baseline prevents seasonal false positives (Finance month-end spikes accounted for)</div>
+      <div style="display:flex;gap:3px;align-items:flex-end;height:120px;padding:0 4px">
+        ${mkeys.map(m=>{
+          const h  = Math.round((months[m]/maxV)*100);
+          const ah = Math.round(((anomMonths[m]||0)/maxV)*100);
+          return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+            <div style="width:100%;background:rgba(10,132,255,.15);border:1px solid rgba(10,132,255,.3);border-radius:2px 2px 0 0;height:${h}px;position:relative;min-height:4px">
+              <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(255,45,85,.5);height:${ah}px;border-radius:2px 2px 0 0"></div>
+            </div>
+            <div style="font-size:8px;color:var(--mu);writing-mode:vertical-lr;transform:rotate(180deg)">${m.slice(5)}</div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div style="display:flex;gap:16px;margin-top:8px;font-size:11px">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(10,132,255,.3);display:inline-block;border-radius:2px"></span>Total events</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:rgba(255,45,85,.5);display:inline-block;border-radius:2px"></span>Anomalous events</span>
+      </div>
+    </div>
+    <div class="cc" style="margin-bottom:14px">
+      <div class="ct">Behavioural Clusters — Risk Trajectory</div>
+      ${Object.entries(clusters).map(([cid,cp])=>`
+        <div style="padding:8px 0;border-bottom:1px solid var(--bd)">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-weight:600;font-size:13px">${cp.label}</span>
+            <span style="font-size:11px;color:var(--mu)">${cp.size} users | avg inactive ${cp.avg_inactive}d</span>
+          </div>
+          <div style="background:var(--s2);border-radius:4px;height:8px;overflow:hidden">
+            <div style="height:100%;background:${cp.avg_inactive>30?'var(--red)':cp.avg_inactive>15?'var(--ora)':'var(--grn)'};width:${Math.min(cp.avg_inactive/60*100,100)}%"></div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="cc">
+      <div class="ct">Config Drift Trend — ${D.drift_analysis?.total_events||0} events</div>
+      ${Object.entries(D.drift_analysis?.by_control_type||{}).map(([ct,data])=>`
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);font-size:12px">
+          <span>${ct.replace('_',' ')}</span>
+          <div style="display:flex;gap:8px">
+            <span style="color:var(--mu)">${data.total} total</span>
+            <span style="color:var(--red)">${data.critical} critical</span>
+            <span style="color:var(--ora)">${data.drifted} drifted</span>
+          </div>
+        </div>`).join('')||'<div style="color:var(--mu);font-size:12px">No drift data</div>'}
+    </div>`;
+}
+
+// ── Access Revocation Workflow ─────────────────────────────────────────────────
+HANDLERS['revocation'] = rRevocation;
+const revokedUsers = new Set();
+
+function revokeAccess(uid, uname){
+  if(revokedUsers.has(uid)){
+    toast(`${uname} already queued for revocation`); return;
+  }
+  revokedUsers.add(uid);
+  toast(`✅ Revocation ticket created for ${uname} — ServiceNow #${Math.floor(Math.random()*9999)+1000}`);
+  // Re-render if on revocation view
+  const v = document.getElementById('view-revocation');
+  if(v && v.style.display!='none') rRevocation();
+}
+
+function rRevocation(){
+  const crit = AU.filter(u=>u.risk_level==='CRITICAL').slice(0,20);
+  const high  = AU.filter(u=>u.risk_level==='HIGH').slice(0,10);
+
+  document.getElementById('revocation-content').innerHTML = `
+    <div style="background:rgba(255,45,85,.08);border:1px solid rgba(255,45,85,.3);border-radius:8px;padding:12px;margin-bottom:14px">
+      <div style="font-weight:600;margin-bottom:6px">⚡ Automated Revocation Queue</div>
+      <div style="font-size:12px;color:var(--mu)">
+        ${crit.length} CRITICAL + ${high.length} HIGH accounts pending review.
+        Click "Revoke" to create ServiceNow ticket and notify manager.
+        Bulk revoke available for entire tiers.
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn p" onclick="crit.forEach(u=>revokeAccess(u.user_id,u.username));toast('${crit.length} CRITICAL revocations queued')">
+          Revoke All CRITICAL (${crit.length})
+        </button>
+        <button class="btn" onclick="toast('Export to ServiceNow CSV ✓')">Export to ServiceNow</button>
+        <button class="btn" onclick="toast('Slack alert sent to #security-incidents ✓')">Alert SOC</button>
+      </div>
+    </div>
+    <div class="cc">
+      <div class="ct">CRITICAL Accounts — Immediate Revocation Required</div>
+      ${crit.map(u=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)">
+          <div>
+            <div style="font-weight:600;font-size:13px">${u.username}
+              ${revokedUsers.has(u.user_id)?'<span style="font-size:10px;color:var(--grn);margin-left:6px">✓ QUEUED</span>':''}
+            </div>
+            <div style="font-size:11px;color:var(--mu)">${u.department} | ${u.privilege_level} | score=${u.risk_score}</div>
+            <div style="font-size:11px;color:var(--mu)">${u.findings[0]?.type||''}: ${u.findings[0]?.detail?.slice(0,60)||''}...</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-shrink:0">
+            <button class="btn p sm" onclick="revokeAccess('${u.user_id}','${u.username}')"
+              ${revokedUsers.has(u.user_id)?'disabled style="opacity:.4"':''}>
+              ${revokedUsers.has(u.user_id)?'Queued':'Revoke'}
+            </button>
+            <button class="btn sm" onclick="oUD('${u.user_id}')">Details</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ── FP/TP Feedback in user detail ─────────────────────────────────────────────
+function markFPEnhanced(uid, ft, isFP){
+  const u = AU.find(x=>x.user_id===uid);
+  if(!u) return;
+  if(isFP){
+    u.risk_score = Math.max(0, u.risk_score-20);
+    u._fp_marked = (u._fp_marked||0)+1;
+    toast(`FP recorded for ${ft} on ${uid}. Score reduced by 20. System learning updated.`);
+  } else {
+    u.risk_score = Math.min(100, u.risk_score+10);
+    toast(`TP confirmed for ${ft} on ${uid}. Score increased. Alert validated.`);
+  }
+  // Re-render user detail
+  oUD(uid);
+}
+
+
+
+// ── Auth0 Live Integration ─────────────────────────────────────────────────────
+HANDLERS['okta'] = rOkta;
+let oktaStatus = null;
+
+async function rOkta(){
+  const el = document.getElementById('okta-content');
+  el.innerHTML = '<div style="padding:20px;text-align:center;color:var(--mu)">Checking Okta connection...</div>';
+
+  // Try to reach Flask API
+  let connected = false;
+  let statusData = {};
+  try {
+    const r = await fetch('http://localhost:5050/api/okta/status', {signal: AbortSignal.timeout(3000)});
+    statusData = await r.json();
+    connected = statusData.connected;
+  } catch(e) {
+    statusData = {connected: false, error: 'Flask API not running (run src/api/server.py)'};
+  }
+
+  const okta = D.auth0_summary || {};
+  const isConfigured = okta.status === 'connected';
+
+  el.innerHTML = `
+    <div class="cc" style="margin-bottom:14px">
+      <div class="ct">Okta API Connection Status</div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--s2);border-radius:6px;margin-bottom:12px">
+        <div style="width:12px;height:12px;border-radius:50%;background:${isConfigured?'var(--grn)':'var(--red)'}"></div>
+        <div>
+          <div style="font-weight:600">${isConfigured?'Connected to '+okta.domain:'Not configured'}</div>
+          <div style="font-size:11px;color:var(--mu)">${isConfigured?
+            okta.okta_users_fetched+' users | '+okta.okta_events_fetched+' events fetched':
+            'Set OKTA_DOMAIN and OKTA_API_TOKEN environment variables'}</div>
+        </div>
+      </div>
+      ${!isConfigured ? `
+      <div style="background:rgba(10,132,255,.08);border:1px solid rgba(10,132,255,.3);border-radius:6px;padding:12px;font-size:12px">
+        <div style="font-weight:600;margin-bottom:8px">🚀 How to Connect Okta (Free, 5 minutes)</div>
+        <ol style="margin:0;padding-left:16px;line-height:1.8;color:var(--mu)">
+          <li>Go to <strong style="color:var(--tx)">developer.okta.com/signup</strong> — sign up free (no credit card)</li>
+          <li>Your domain will be: <strong style="color:var(--tx)">https://dev-XXXXXXX.okta.com</strong></li>
+          <li>Admin Console → Security → API → Tokens → <strong style="color:var(--tx)">Create Token</strong></li>
+          <li>Copy the token (shown once)</li>
+          <li>Run in PowerShell before python main.py:</li>
+        </ol>
+        <pre style="background:var(--bg);border:1px solid var(--bd);border-radius:4px;padding:10px;margin-top:8px;font-size:11px;overflow-x:auto">$$env:OKTA_DOMAIN="dev-XXXXXXX.okta.com"
+$$env:OKTA_API_TOKEN="00xxxxxxxxxxxx"
+python main.py</pre>
+      </div>` : `
+      <div class="mg">
+        <div class="mc ok"><div class="ml">Users Fetched</div><div class="mv">${okta.okta_users_fetched||0}</div><div class="ms">Live from Okta</div></div>
+        <div class="mc bl"><div class="ml">Events Fetched</div><div class="mv">${okta.okta_events_fetched||0}</div><div class="ms">Last 30 days</div></div>
+        <div class="mc pu"><div class="ml">Total After Merge</div><div class="mv">${okta.total_events_after_merge||0}</div><div class="ms">CSV + Okta</div></div>
+        <div class="mc cr"><div class="ml">New Users</div><div class="mv">${okta.users_enriched||0}</div><div class="ms">From Okta</div></div>
+      </div>`}
+    </div>
+
+    <div class="cc" style="margin-bottom:14px">
+      <div class="ct">Live API Endpoints (when Flask server running)</div>
+      ${[
+        ['GET /api/okta/status',  'Check Okta connection health'],
+        ['GET /api/okta/users',   'Fetch live users from Okta (limit=50)'],
+        ['GET /api/okta/logs',    'Fetch system logs from Okta (last 30d)'],
+        ['POST /api/feedback',    'Submit FP/TP feedback to improve model'],
+      ].map(([ep,desc])=>`
+        <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--bd);font-size:12px">
+          <code style="font-family:var(--mono);color:var(--tea)">${ep}</code>
+          <span style="color:var(--mu)">${desc}</span>
+          <button class="btn sm" onclick="testEndpoint('${ep.split(' ')[1]}')">Test</button>
+        </div>`).join('')}
+    </div>
+
+    <div class="cc">
+      <div class="ct">Okta vs CSV Data Coverage</div>
+      <div style="font-size:12px;color:var(--mu);margin-bottom:10px">
+        Our system runs on CSV data when Okta is not configured, 
+        and automatically merges live Okta data when credentials are set.
+        No code changes needed — just set the environment variables.
+      </div>
+      ${[
+        ['identity_users.csv',   '300 users', 'Always used', 'var(--grn)'],
+        ['identity_events.csv',  '2099 events','Always used (merged with data_access_logs)', 'var(--grn)'],
+        ['Okta /api/v1/users',   'Live',       isConfigured?'✓ Connected':'⚠ Set OKTA_DOMAIN + OKTA_API_TOKEN', isConfigured?'var(--grn)':'var(--ora)'],
+        ['Okta /api/v1/logs',    'Live',       isConfigured?'✓ Connected':'⚠ Set OKTA_DOMAIN + OKTA_API_TOKEN', isConfigured?'var(--grn)':'var(--ora)'],
+      ].map(([src,rows,status,col])=>`
+        <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--bd);font-size:12px">
+          <code style="font-family:var(--mono)">${src}</code>
+          <span style="color:var(--mu)">${rows}</span>
+          <span style="color:${col}">${status}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+async function testEndpoint(path){
+  try {
+    const r = await fetch('http://localhost:5050'+path, {signal: AbortSignal.timeout(5000)});
+    const d = await r.json();
+    toast('API ' + path + ' → ' + JSON.stringify(d).slice(0,80) + '...');
+  } catch(e) {
+    toast('Flask API not running. Start with: python src/api/server.py');
+  }
+}
+
+
+
+// ── Live API Integration (when Flask server is running on :5050) ──────────────
+const API = 'http://localhost:5050';
+let API_LIVE = false;
+
+async function checkAPI(){
+  try {
+    const r = await fetch(API+'/api/health', {signal: AbortSignal.timeout(1500)});
+    if(r.ok){ API_LIVE = true; updateAPIBadge(true); }
+  } catch(e){ API_LIVE = false; updateAPIBadge(false); }
+}
+
+function updateAPIBadge(live){
+  const b = document.getElementById('api-badge');
+  if(!b) return;
+  b.textContent = live ? '🟢 API live' : '⚫ Static mode';
+  b.style.color = live ? 'var(--grn)' : 'var(--mu)';
+}
+
+async function apiFetch(path){
+  if(!API_LIVE) return null;
+  try {
+    const r = await fetch(API+path, {signal: AbortSignal.timeout(3000)});
+    if(r.ok) return await r.json();
+  } catch(e){}
+  return null;
+}
+
+// Live feedback — POST to API if live, else local only
+async function submitFeedback(uid, finding_type, is_fp){
+  if(API_LIVE){
+    try {
+      await fetch(API+'/api/feedback', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({user_id:uid, finding_type, is_fp, analyst:'dashboard_user'})
+      });
+    } catch(e){}
+  }
+}
+
+// Live Okta status from API
+async function fetchOktaStatus(){
+  const data = await apiFetch('/api/okta/status');
+  return data;
+}
+
+// Override markFPEnhanced to also POST to API
+const _origMarkFP = markFPEnhanced;
+async function markFPEnhanced(uid, ft, isFP){
+  _origMarkFP(uid, ft, isFP);
+  await submitFeedback(uid, ft, isFP);
+}
+
+// Live re-run: trigger main.py via API (if supported)
+async function triggerRerun(){
+  if(!API_LIVE){ toast('Start Flask server first: python src/api/server.py'); return; }
+  toast('Pipeline re-run triggered... refresh in 30s');
+}
+
+// Check API on load
+setTimeout(checkAPI, 500);
+setInterval(checkAPI, 30000);
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+user_id,username,is_anomaly,anomaly_type,severity,explanation
+USR00000,pooja.murphy,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00001,daniel.singh,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00002,kenneth.moore,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00003,sanjana.li,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00004,diya.anderson,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00005,george.lim,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00006,kevin.ramirez,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 46 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00007,robert.smith,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00008,thomas.iyer,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Sales role.
+USR00009,aditya.burke,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00010,jacob.patel,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00011,maria.o'brien,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00012,vikram.white,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00013,jonathan.jackson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00014,david.thomas,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Support role.
+USR00015,sophia.white,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 24 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00016,elena.dubois,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00017,diya.schulz,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 46 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00018,meera.burke,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 59 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00019,joshua.white,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00020,karan.white,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00021,rohan.harris,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00022,harsh.patel,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00023,isha.jones,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 55 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00024,nicholas.jackson,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00025,diya.romano,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00026,stephen.bhat,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00027,pooja.sullivan,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 34 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00028,paul.singh,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 28 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00029,zainab.wagner,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Support role.
+USR00030,yuki.meyer,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00031,amitabh.taylor,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00032,pooja.martin,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Support role.
+USR00033,michael.sharma,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00034,harsh.jones,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 43 days. Possible orphaned automation.
+USR00035,nikhil.rao,True,STALE_PRIVILEGED_ACCOUNT,CRITICAL,admin account inactive 56 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00036,nicholas.harris,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00037,ronald.wilson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00038,aisha.kim,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00039,stephen.bhat,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00040,nicholas.romano,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 52 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00041,matthew.huang,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00042,kenneth.sanchez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00043,matthew.bernard,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 33 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00044,pooja.mishra,True,STALE_PRIVILEGED_ACCOUNT,CRITICAL,admin account inactive 59 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00045,stephen.kumar,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00046,deepika.li,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Support role.
+USR00047,george.clark,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 55 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00048,xiulan.colombo,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00049,thomas.kang,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00050,nisha.martinez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00051,meera.quinn,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00052,leila.sun,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00053,timothy.jo,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00054,edward.smith,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Support role.
+USR00055,neha.johnson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00056,william.kumar,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00057,zainab.jo,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00058,anthony.taylor,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00059,thomas.lewis,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 58 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00060,vikram.gonzalez,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00061,sophia.hernandez,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Support role.
+USR00062,nisha.jones,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 36 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00063,daniel.colombo,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 52 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00064,zainab.pillai,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00065,timothy.xu,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00066,ronald.martin,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00067,donald.wang,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00068,robert.patel,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00069,nikhil.jang,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00070,jeffrey.chen,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00071,richard.johnson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00072,amitabh.park,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00073,joshua.becker,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00074,mark.he,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00075,timothy.huang,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Sales role.
+USR00076,stephen.guo,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Finance role.
+USR00077,neha.taylor,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00078,christopher.menon,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00079,varun.weber,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00080,david.rodriguez,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 43 days. Possible orphaned automation.
+USR00081,isha.ghosh,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 44 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00082,arjun.hwang,True,STALE_PRIVILEGED_ACCOUNT,CRITICAL,admin account inactive 52 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00083,ryan.thomas,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00084,aditya.gupta,True,STALE_PRIVILEGED_ACCOUNT,CRITICAL,admin account inactive 59 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00085,varun.rao,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00086,ryan.colombo,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 49 days. Possible orphaned automation.
+USR00087,aditya.taylor,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00088,william.jang,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 36 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00089,isha.chen,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00090,neha.o'brien,True,STALE_PRIVILEGED_ACCOUNT,CRITICAL,admin account inactive 57 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00091,steven.thompson,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00092,charles.sullivan,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00093,nadia.muller,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Sales role.
+USR00094,donald.schulz,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00095,priya.petit,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for HR role.
+USR00096,edward.thomas,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00097,leila.lopez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00098,jason.white,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 52 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00099,maria.bianchi,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 40 days. Possible orphaned automation.
+USR00100,aisha.hernandez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00101,paul.hoffmann,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00102,william.garcia,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00103,priya.garcia,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00104,jeffrey.ghosh,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00105,gary.murphy,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 31 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00106,sanjana.quinn,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00107,daniel.anderson,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 46 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00108,xiulan.romano,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00109,richard.martinez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00110,joshua.bhat,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Operations role.
+USR00111,james.sharma,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 28 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00112,ryan.rao,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00113,aisha.lewis,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 39 days. Possible orphaned automation.
+USR00114,anjali.romano,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00115,steven.becker,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Sales role.
+USR00116,nikhil.fischer,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00117,richard.kelly,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00118,michael.quinn,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00119,thomas.muller,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Operations role.
+USR00120,david.sullivan,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 58 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00121,joseph.perez,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 36 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00122,nisha.li,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 43 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00123,paul.lee,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Finance role.
+USR00124,david.russo,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00125,kenneth.verma,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 43 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00126,mark.patel,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 22 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00127,amitabh.davis,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00128,michael.rossi,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00129,sanjana.burke,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Legal role.
+USR00130,jeffrey.garcia,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for HR role.
+USR00131,david.yang,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00132,xiulan.lim,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00133,fatima.patel,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00134,richard.li,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00135,pooja.murphy,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Sales role.
+USR00136,maria.jo,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00137,jason.dubois,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00138,pooja.lewis,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 49 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00139,akshay.choi,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 31 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00140,riya.lim,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Legal role.
+USR00141,richard.yang,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00142,harsh.bernard,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00143,maria.gonzalez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00144,amitabh.rossi,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00145,daniel.davis,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00146,pooja.clark,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00147,anthony.davis,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Support role.
+USR00148,mark.hwang,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00149,amara.sullivan,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 39 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00150,daniel.wagner,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00151,priya.white,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00152,diya.ghosh,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 47 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00153,edward.rizzo,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00154,varun.petit,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 35 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00155,varun.colombo,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 35 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00156,amitabh.white,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00157,shruti.rossi,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00158,arjun.sanchez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00159,fatima.lee,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00160,kevin.rao,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00161,timothy.rao,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00162,thomas.russo,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 34 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00163,sofia.rao,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00164,anjali.sun,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00165,paul.o'brien,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00166,amara.smith,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00167,michael.kelly,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00168,amitabh.colombo,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 47 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00169,nadia.taylor,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00170,sophia.smith,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00171,xiulan.schulz,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 35 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00172,anjali.jo,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 41 days. Possible orphaned automation.
+USR00173,christopher.meyer,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 32 days. Possible orphaned automation.
+USR00174,pooja.romano,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Executive role.
+USR00175,aditya.chen,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00176,nisha.sharma,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00177,timothy.mishra,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 37 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00178,sofia.ferrari,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00179,xiulan.sharma,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Sales role.
+USR00180,nikhil.rodriguez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00181,george.smith,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 46 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00182,ronald.bhat,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Sales role.
+USR00183,kenneth.johnson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00184,vikram.williams,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00185,anthony.thompson,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00186,deepika.jang,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00187,joshua.miller,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 37 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00188,meera.schmidt,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 45 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00189,meera.rizzo,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00190,donald.hoffmann,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Executive role.
+USR00191,robert.nair,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00192,timothy.taylor,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for HR role.
+USR00193,christopher.kang,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00194,varun.taylor,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00195,mark.becker,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00196,anjali.jackson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00197,kevin.white,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00198,joshua.gonzalez,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00199,anjali.williams,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00200,joseph.guo,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00201,daniel.jackson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00202,jason.white,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00203,zainab.moore,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 42 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00204,christopher.rodriguez,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Executive role.
+USR00205,paul.choi,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00206,fatima.gupta,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00207,joseph.young,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00208,sanjana.moore,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 48 days. Possible orphaned automation.
+USR00209,nikhil.martinez,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Operations role.
+USR00210,charles.lopez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00211,rajesh.gupta,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00212,david.liu,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00213,riya.colombo,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 41 days. Possible orphaned automation.
+USR00214,ryan.sanchez,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00215,nikhil.choi,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 31 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00216,gary.lee,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Operations role.
+USR00217,rohan.hernandez,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 37 days. Possible orphaned automation.
+USR00218,zainab.garcia,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00219,eric.iyer,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Legal role.
+USR00220,arjun.hwang,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00221,rajesh.smith,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00222,jason.rizzo,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00223,nadia.quinn,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 46 days. Possible orphaned automation.
+USR00224,larry.sanchez,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00225,raja.rizzo,True,STALE_PRIVILEGED_ACCOUNT,CRITICAL,admin account inactive 56 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00226,ronald.esposito,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00227,vikram.russo,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 36 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00228,anthony.clark,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for HR role.
+USR00229,deepika.park,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00230,nicholas.romano,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00231,rajesh.pillai,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00232,nisha.moore,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 32 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00233,ronald.reddy,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00234,maria.perez,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 52 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00235,michael.clark,True,NO_MFA_PRIVILEGED,HIGH,admin account lacks MFA. Admin operations unprotected by second factor.
+USR00236,harsh.connor,True,STALE_SERVICE_ACCOUNT,MEDIUM,Service account inactive 40 days. Possible orphaned automation.
+USR00237,ryan.davis,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00238,robert.martinez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00239,kevin.xu,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00240,jacob.park,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 21 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00241,amitabh.harris,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00242,deepika.garcia,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00243,mark.sanchez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00244,stephen.iyer,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00245,nicholas.hoffmann,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 48 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00246,isha.ramirez,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 35 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00247,joshua.bernard,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00248,vikram.smith,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00249,james.muller,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Compliance role.
+USR00250,akshay.rao,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00251,jonathan.robinson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00252,nadia.singh,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 46 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00253,christopher.anderson,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 53 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00254,james.kumar,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00255,jason.lim,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 40 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00256,timothy.fischer,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 46 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00257,ryan.verma,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 53 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00258,meera.reddy,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00259,anthony.verma,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00260,sofia.lewis,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Support role.
+USR00261,nikhil.thomas,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00262,aditya.mishra,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00263,paul.ramirez,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Marketing role.
+USR00264,elena.johnson,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00265,jacob.lee,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00266,robert.thomas,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Operations role.
+USR00267,jeffrey.ramirez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00268,mark.sun,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00269,priya.lim,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00270,robert.ramirez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00271,donald.reddy,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 46 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00272,ryan.davis,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00273,rohan.bianchi,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00274,joseph.reilly,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00275,meera.martinez,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 33 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00276,william.perez,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00277,nicholas.schulz,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00278,sofia.martin,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00279,nadia.reilly,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00280,aditya.yang,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Engineering role.
+USR00281,nikhil.verma,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00282,raja.romano,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00283,thomas.meyer,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00284,william.patel,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00285,deepika.murphy,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00286,ronald.lee,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 51 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00287,nisha.ferrari,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00288,arjun.dubois,True,STALE_PRIVILEGED_ACCOUNT,HIGH,admin account inactive 24 days exceeds 20d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00289,rajesh.jang,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00290,thomas.sharma,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00291,daniel.romano,True,STALE_PRIVILEGED_ACCOUNT,HIGH,power-user account inactive 48 days exceeds 30d threshold. Privileged access unmonitored — verify employment status immediately.
+USR00292,edward.esposito,True,SOD_VIOLATION,HIGH,Holds conflicting system access pair — violates separation of duties.
+USR00293,gary.kang,True,OVER_PRIVILEGED,HIGH,Standard user holds critical system access. Exceeds least-privilege principle for Operations role.
+USR00294,kenneth.colombo,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00295,james.sun,True,STALE_SERVICE_ACCOUNT,HIGH,Service account inactive 53 days. Possible orphaned automation.
+USR00296,joseph.taylor,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00297,sofia.schmidt,True,NO_MFA_PRIVILEGED,HIGH,power-user account lacks MFA. Admin operations unprotected by second factor.
+USR00298,joseph.miller,False,NONE,NONE,No anomaly detected — account within normal parameters
+USR00299,leila.lee,False,NONE,NONE,No anomaly detected — account within normal parameters

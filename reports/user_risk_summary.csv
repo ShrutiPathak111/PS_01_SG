@@ -1,0 +1,301 @@
+user_id,username,department,privilege,days_inactive,risk_level,risk_score,findings_count,cluster,confidence,escalation
+USR00000,pooja.murphy,Executive,user,59,MEDIUM,43,2,Night Operators,0.92,🟡 Within 1 week — Schedule access review
+USR00001,daniel.singh,Compliance,user,20,HIGH,73,2,Night Operators,0.92,🟠 Within 24 hours — Team lead review required
+USR00002,kenneth.moore,Sales,service-account,13,LOW,28,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00003,sanjana.li,Marketing,user,13,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00004,diya.anderson,Marketing,user,14,CRITICAL,100,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00005,george.lim,Engineering,user,57,MEDIUM,43,2,Heavy Exporters,0.92,🟡 Within 1 week — Schedule access review
+USR00006,kevin.ramirez,Legal,power-user,46,MEDIUM,46,1,Night Operators,0.92,🟡 Within 1 week — Schedule access review
+USR00007,robert.smith,Operations,user,44,CRITICAL,86,2,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00008,thomas.iyer,Sales,user,57,CRITICAL,91,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00009,aditya.burke,Finance,power-user,23,MEDIUM,39,1,Heavy Exporters,0.92,🟡 Within 1 week — Schedule access review
+USR00010,jacob.patel,Marketing,user,1,CRITICAL,100,4,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00011,maria.o'brien,Security,user,16,MEDIUM,43,2,Night Operators,0.92,🟡 Within 1 week — Schedule access review
+USR00012,vikram.white,Operations,service-account,25,LOW,28,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00013,jonathan.jackson,Sales,user,34,LOW,25,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00014,david.thomas,Support,user,2,CRITICAL,100,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00015,sophia.white,Security,admin,24,CRITICAL,91,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00016,elena.dubois,IT,user,32,LOW,25,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00017,diya.schulz,Executive,power-user,46,CRITICAL,91,2,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00018,meera.burke,Operations,power-user,59,MEDIUM,46,1,Heavy Exporters,0.92,🟡 Within 1 week — Schedule access review
+USR00019,joshua.white,Finance,user,2,HIGH,64,2,Heavy Exporters,0.92,🟠 Within 24 hours — Team lead review required
+USR00020,karan.white,IT,user,25,CRITICAL,86,2,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00021,rohan.harris,Marketing,user,33,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00022,harsh.patel,Legal,user,52,CRITICAL,100,4,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00023,isha.jones,Legal,power-user,55,CRITICAL,100,4,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00024,nicholas.jackson,Compliance,user,31,HIGH,73,2,Night Operators,0.92,🟠 Within 24 hours — Team lead review required
+USR00025,diya.romano,Marketing,power-user,13,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00026,stephen.bhat,Finance,user,33,CRITICAL,100,4,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00027,pooja.sullivan,Support,admin,34,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00028,paul.singh,HR,admin,28,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00029,zainab.wagner,Support,user,35,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00030,yuki.meyer,Marketing,service-account,24,LOW,28,1,Heavy Exporters,0.92,🟢 Next quarterly review — Add to monitoring
+USR00031,amitabh.taylor,Finance,power-user,30,HIGH,61,1,Heavy Exporters,0.92,🟠 Within 24 hours — Team lead review required
+USR00032,pooja.martin,Support,user,13,HIGH,73,2,Night Operators,0.92,🟠 Within 24 hours — Team lead review required
+USR00033,michael.sharma,Legal,power-user,26,INFORMATIONAL,0,0,Night Operators,0.92,⚪ Log only — No action required
+USR00034,harsh.jones,Operations,service-account,43,CRITICAL,93,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00035,nikhil.rao,Executive,admin,56,CRITICAL,100,5,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00036,nicholas.harris,Marketing,user,40,HIGH,73,2,Heavy Exporters,0.92,🟠 Within 24 hours — Team lead review required
+USR00037,ronald.wilson,Finance,power-user,25,INFORMATIONAL,0,0,Heavy Exporters,0.92,⚪ Log only — No action required
+USR00038,aisha.kim,Compliance,user,5,CRITICAL,100,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00039,stephen.bhat,Engineering,user,25,LOW,25,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00040,nicholas.romano,Security,power-user,52,CRITICAL,100,5,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00041,matthew.huang,Operations,power-user,7,MEDIUM,42,1,Heavy Exporters,0.92,🟡 Within 1 week — Schedule access review
+USR00042,kenneth.sanchez,Support,user,46,MEDIUM,43,2,Night Operators,0.92,🟡 Within 1 week — Schedule access review
+USR00043,matthew.bernard,Operations,power-user,33,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00044,pooja.mishra,Finance,admin,59,CRITICAL,100,2,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00045,stephen.kumar,Security,user,26,LOW,25,1,Heavy Exporters,0.92,🟢 Next quarterly review — Add to monitoring
+USR00046,deepika.li,Support,user,48,CRITICAL,100,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00047,george.clark,Engineering,power-user,55,MEDIUM,46,1,Heavy Exporters,0.92,🟡 Within 1 week — Schedule access review
+USR00048,xiulan.colombo,Compliance,user,34,CRITICAL,100,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00049,thomas.kang,Engineering,user,24,CRITICAL,100,4,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00050,nisha.martinez,HR,user,25,HIGH,64,2,Night Operators,0.92,🟠 Within 24 hours — Team lead review required
+USR00051,meera.quinn,Executive,user,30,INFORMATIONAL,0,0,Night Operators,0.92,⚪ Log only — No action required
+USR00052,leila.sun,Engineering,user,53,CRITICAL,82,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00053,timothy.jo,Engineering,user,11,CRITICAL,100,5,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00054,edward.smith,Support,user,12,HIGH,73,2,Night Operators,0.92,🟠 Within 24 hours — Team lead review required
+USR00055,neha.johnson,Sales,user,49,CRITICAL,82,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00056,william.kumar,Compliance,user,58,CRITICAL,100,4,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00057,zainab.jo,Sales,admin,14,CRITICAL,100,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00058,anthony.taylor,Finance,user,51,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00059,thomas.lewis,Finance,power-user,58,CRITICAL,100,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00060,vikram.gonzalez,Sales,power-user,4,CRITICAL,91,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00061,sophia.hernandez,Support,user,35,HIGH,73,2,Night Operators,0.92,🟠 Within 24 hours — Team lead review required
+USR00062,nisha.jones,Marketing,power-user,36,CRITICAL,88,2,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00063,daniel.colombo,Sales,power-user,52,CRITICAL,88,2,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00064,zainab.pillai,HR,user,58,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00065,timothy.xu,Marketing,user,6,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00066,ronald.martin,Security,user,29,LOW,25,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00067,donald.wang,Marketing,user,54,CRITICAL,100,4,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00068,robert.patel,Support,admin,7,CRITICAL,87,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00069,nikhil.jang,HR,user,30,LOW,25,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00070,jeffrey.chen,IT,power-user,19,MEDIUM,42,2,Heavy Exporters,0.92,🟡 Within 1 week — Schedule access review
+USR00071,richard.johnson,HR,user,23,LOW,25,1,Heavy Exporters,0.92,🟢 Next quarterly review — Add to monitoring
+USR00072,amitabh.park,Legal,user,44,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00073,joshua.becker,Security,user,20,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00074,mark.he,Security,user,0,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00075,timothy.huang,Sales,user,21,CRITICAL,100,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00076,stephen.guo,Finance,user,8,HIGH,73,2,Night Operators,0.92,🟠 Within 24 hours — Team lead review required
+USR00077,neha.taylor,Finance,power-user,11,MEDIUM,42,1,Heavy Exporters,0.92,🟡 Within 1 week — Schedule access review
+USR00078,christopher.menon,Executive,service-account,22,LOW,28,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00079,varun.weber,Engineering,user,52,CRITICAL,91,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00080,david.rodriguez,HR,service-account,43,MEDIUM,54,2,Heavy Exporters,0.92,🟡 Within 1 week — Schedule access review
+USR00081,isha.ghosh,IT,power-user,44,MEDIUM,46,2,Night Operators,0.92,🟡 Within 1 week — Schedule access review
+USR00082,arjun.hwang,Legal,admin,52,HIGH,64,1,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00083,ryan.thomas,Marketing,service-account,17,CRITICAL,89,2,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00084,aditya.gupta,Engineering,admin,59,HIGH,64,1,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00085,varun.rao,Marketing,user,44,LOW,25,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00086,ryan.colombo,Engineering,service-account,49,CRITICAL,100,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00087,aditya.taylor,Marketing,power-user,28,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00088,william.jang,Engineering,admin,36,CRITICAL,88,2,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00089,isha.chen,Compliance,service-account,18,LOW,28,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00090,neha.o'brien,Finance,admin,57,CRITICAL,100,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00091,steven.thompson,Support,power-user,26,CRITICAL,100,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00092,charles.sullivan,IT,user,28,CRITICAL,100,3,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00093,nadia.muller,Sales,user,46,CRITICAL,91,3,Night Operators,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00094,donald.schulz,Sales,user,28,CRITICAL,86,2,Heavy Exporters,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00095,priya.petit,HR,user,20,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00096,edward.thomas,Operations,service-account,24,LOW,28,1,Night Operators,0.92,🟢 Next quarterly review — Add to monitoring
+USR00097,leila.lopez,IT,user,43,HIGH,64,2,Night Operators,0.92,🟠 Within 24 hours — Team lead review required
+USR00098,jason.white,Compliance,power-user,52,MEDIUM,46,1,Night Operators,0.92,🟡 Within 1 week — Schedule access review
+USR00099,maria.bianchi,Marketing,service-account,40,MEDIUM,54,2,Night Operators,0.92,🟡 Within 1 week — Schedule access review
+USR00100,aisha.hernandez,Security,user,32,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00101,paul.hoffmann,Finance,user,5,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00102,william.garcia,Engineering,power-user,15,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00103,priya.garcia,Support,user,18,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00104,jeffrey.ghosh,Marketing,user,34,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00105,gary.murphy,Security,power-user,31,CRITICAL,88,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00106,sanjana.quinn,Sales,user,39,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00107,daniel.anderson,Finance,power-user,46,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00108,xiulan.romano,Sales,user,30,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00109,richard.martinez,HR,user,56,LOW,18,1,Normal Users,0.82,🟢 Next quarterly review — Add to monitoring
+USR00110,joshua.bhat,Operations,user,28,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00111,james.sharma,Security,admin,28,CRITICAL,100,4,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00112,ryan.rao,Marketing,user,54,LOW,18,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00113,aisha.lewis,Security,service-account,39,LOW,26,1,Normal Users,0.82,🟢 Next quarterly review — Add to monitoring
+USR00114,anjali.romano,Sales,power-user,8,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00115,steven.becker,Sales,user,0,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00116,nikhil.fischer,Engineering,user,25,MEDIUM,48,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00117,richard.kelly,Marketing,power-user,11,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00118,michael.quinn,Operations,user,50,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00119,thomas.muller,Operations,user,25,MEDIUM,48,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00120,david.sullivan,Compliance,power-user,58,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00121,joseph.perez,Security,admin,36,CRITICAL,88,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00122,nisha.li,Marketing,admin,43,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00123,paul.lee,Finance,user,34,MEDIUM,48,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00124,david.russo,IT,user,31,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00125,kenneth.verma,Marketing,admin,43,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00126,mark.patel,Operations,admin,22,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00127,amitabh.davis,Security,user,22,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00128,michael.rossi,Marketing,user,13,MEDIUM,48,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00129,sanjana.burke,Legal,user,17,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00130,jeffrey.garcia,HR,user,2,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00131,david.yang,Engineering,user,35,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00132,xiulan.lim,Security,user,59,LOW,18,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00133,fatima.patel,Compliance,user,1,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00134,richard.li,Marketing,user,36,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00135,pooja.murphy,Sales,user,54,HIGH,66,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00136,maria.jo,Executive,user,20,INFORMATIONAL,0,0,Normal Users,0.82,⚪ Log only — No action required
+USR00137,jason.dubois,Operations,user,59,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00138,pooja.lewis,Security,power-user,49,MEDIUM,46,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00139,akshay.choi,Marketing,power-user,31,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00140,riya.lim,Legal,user,35,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00141,richard.yang,HR,power-user,24,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00142,harsh.bernard,IT,user,26,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00143,maria.gonzalez,Operations,user,51,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00144,amitabh.rossi,Operations,user,12,INFORMATIONAL,0,0,Normal Users,0.82,⚪ Log only — No action required
+USR00145,daniel.davis,Marketing,user,14,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00146,pooja.clark,IT,user,46,LOW,18,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00147,anthony.davis,Support,user,38,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00148,mark.hwang,Engineering,user,10,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00149,amara.sullivan,Legal,admin,39,CRITICAL,91,2,Normal Users,0.82,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00150,daniel.wagner,Security,user,54,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00151,priya.white,IT,power-user,18,MEDIUM,42,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00152,diya.ghosh,Sales,power-user,47,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00153,edward.rizzo,Security,user,53,LOW,18,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00154,varun.petit,Executive,admin,35,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00155,varun.colombo,Sales,admin,35,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00156,amitabh.white,Compliance,user,44,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00157,shruti.rossi,IT,user,20,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00158,arjun.sanchez,Compliance,user,24,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00159,fatima.lee,Engineering,user,42,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00160,kevin.rao,Security,user,47,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00161,timothy.rao,Security,user,45,INFORMATIONAL,0,0,Normal Users,0.82,⚪ Log only — No action required
+USR00162,thomas.russo,Security,admin,34,MEDIUM,46,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00163,sofia.rao,Sales,power-user,20,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00164,anjali.sun,Engineering,user,37,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00165,paul.o'brien,Finance,user,54,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00166,amara.smith,Legal,power-user,25,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00167,michael.kelly,Compliance,power-user,11,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00168,amitabh.colombo,Operations,power-user,47,CRITICAL,88,2,Normal Users,0.82,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00169,nadia.taylor,Operations,user,8,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00170,sophia.smith,Marketing,user,51,CRITICAL,91,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00171,xiulan.schulz,Finance,power-user,35,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00172,anjali.jo,HR,service-account,41,LOW,26,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00173,christopher.meyer,Compliance,service-account,32,LOW,26,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00174,pooja.romano,Executive,user,15,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00175,aditya.chen,Compliance,user,8,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00176,nisha.sharma,Finance,admin,20,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00177,timothy.mishra,Sales,power-user,37,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00178,sofia.ferrari,Engineering,user,39,MEDIUM,48,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00179,xiulan.sharma,Sales,user,41,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00180,nikhil.rodriguez,Marketing,user,45,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00181,george.smith,Marketing,power-user,46,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00182,ronald.bhat,Sales,user,40,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00183,kenneth.johnson,Engineering,user,1,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00184,vikram.williams,Marketing,user,30,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00185,anthony.thompson,Marketing,user,43,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00186,deepika.jang,HR,user,27,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00187,joshua.miller,Sales,admin,37,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00188,meera.schmidt,Marketing,power-user,45,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00189,meera.rizzo,Support,user,59,LOW,18,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00190,donald.hoffmann,Executive,user,50,CRITICAL,91,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00191,robert.nair,IT,user,10,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00192,timothy.taylor,HR,user,53,HIGH,66,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00193,christopher.kang,Executive,user,11,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00194,varun.taylor,HR,user,14,CRITICAL,93,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00195,mark.becker,Engineering,user,44,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00196,anjali.jackson,Security,user,1,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00197,kevin.white,HR,user,14,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00198,joshua.gonzalez,Marketing,power-user,29,MEDIUM,42,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00199,anjali.williams,Compliance,user,1,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00200,joseph.guo,Compliance,user,12,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00201,daniel.jackson,Operations,power-user,27,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00202,jason.white,Security,user,48,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00203,zainab.moore,Security,admin,42,CRITICAL,100,4,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00204,christopher.rodriguez,Executive,user,28,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00205,paul.choi,Executive,power-user,19,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00206,fatima.gupta,Support,user,17,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00207,joseph.young,IT,power-user,6,MEDIUM,45,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00208,sanjana.moore,HR,service-account,48,LOW,26,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00209,nikhil.martinez,Operations,user,37,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00210,charles.lopez,Security,user,29,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00211,rajesh.gupta,Security,user,12,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00212,david.liu,Engineering,power-user,27,MEDIUM,45,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00213,riya.colombo,Sales,service-account,41,LOW,26,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00214,ryan.sanchez,Engineering,user,37,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00215,nikhil.choi,Engineering,power-user,31,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00216,gary.lee,Operations,user,12,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00217,rohan.hernandez,Compliance,service-account,37,LOW,26,1,Normal Users,0.82,🟢 Next quarterly review — Add to monitoring
+USR00218,zainab.garcia,Sales,power-user,29,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00219,eric.iyer,Legal,user,20,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00220,arjun.hwang,Legal,power-user,26,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00221,rajesh.smith,Engineering,user,51,CRITICAL,100,4,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00222,jason.rizzo,IT,power-user,16,INFORMATIONAL,0,1,Normal Users,0.92,⚪ Log only — No action required
+USR00223,nadia.quinn,Marketing,service-account,46,MEDIUM,54,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00224,larry.sanchez,Marketing,user,45,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00225,raja.rizzo,Sales,admin,56,CRITICAL,100,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00226,ronald.esposito,Operations,user,38,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00227,vikram.russo,Sales,admin,36,CRITICAL,91,2,Normal Users,0.82,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00228,anthony.clark,HR,user,9,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00229,deepika.park,IT,user,0,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00230,nicholas.romano,HR,service-account,16,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00231,rajesh.pillai,Engineering,user,31,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00232,nisha.moore,Finance,power-user,32,CRITICAL,88,2,Normal Users,0.82,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00233,ronald.reddy,HR,user,22,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00234,maria.perez,HR,power-user,52,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00235,michael.clark,Compliance,admin,4,MEDIUM,42,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00236,harsh.connor,Legal,service-account,40,HIGH,71,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00237,ryan.davis,Support,user,6,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00238,robert.martinez,IT,power-user,26,INFORMATIONAL,0,1,Normal Users,0.92,⚪ Log only — No action required
+USR00239,kevin.xu,Sales,user,5,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00240,jacob.park,Compliance,admin,21,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00241,amitabh.harris,Compliance,user,31,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00242,deepika.garcia,Security,user,8,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00243,mark.sanchez,HR,user,32,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00244,stephen.iyer,IT,user,58,LOW,18,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00245,nicholas.hoffmann,Marketing,power-user,48,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00246,isha.ramirez,Finance,admin,35,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00247,joshua.bernard,Compliance,power-user,2,CRITICAL,87,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00248,vikram.smith,Security,user,4,INFORMATIONAL,0,0,Normal Users,0.82,⚪ Log only — No action required
+USR00249,james.muller,Compliance,user,41,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00250,akshay.rao,Finance,user,22,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00251,jonathan.robinson,Engineering,user,29,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00252,nadia.singh,Finance,power-user,46,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00253,christopher.anderson,Compliance,power-user,53,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00254,james.kumar,Finance,user,48,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00255,jason.lim,Finance,admin,40,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00256,timothy.fischer,HR,admin,46,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00257,ryan.verma,Compliance,power-user,53,CRITICAL,88,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00258,meera.reddy,Executive,user,47,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00259,anthony.verma,Marketing,user,8,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00260,sofia.lewis,Support,user,10,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00261,nikhil.thomas,Marketing,user,31,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00262,aditya.mishra,Engineering,admin,5,CRITICAL,87,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00263,paul.ramirez,Marketing,user,39,CRITICAL,100,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00264,elena.johnson,Marketing,power-user,10,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00265,jacob.lee,HR,user,57,LOW,18,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00266,robert.thomas,Operations,user,45,HIGH,73,2,Normal Users,0.92,🟠 Within 24 hours — Team lead review required
+USR00267,jeffrey.ramirez,Operations,user,17,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00268,mark.sun,Security,user,6,INFORMATIONAL,0,0,Normal Users,0.82,⚪ Log only — No action required
+USR00269,priya.lim,Marketing,user,37,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00270,robert.ramirez,Marketing,user,7,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00271,donald.reddy,Support,power-user,46,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00272,ryan.davis,Operations,user,19,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00273,rohan.bianchi,Support,user,35,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00274,joseph.reilly,Sales,user,4,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00275,meera.martinez,Marketing,power-user,33,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00276,william.perez,Engineering,power-user,15,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00277,nicholas.schulz,Compliance,power-user,16,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00278,sofia.martin,Engineering,user,53,CRITICAL,91,3,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00279,nadia.reilly,Security,user,4,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00280,aditya.yang,Engineering,user,12,MEDIUM,48,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00281,nikhil.verma,Finance,user,38,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00282,raja.romano,Legal,power-user,18,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00283,thomas.meyer,Sales,power-user,15,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00284,william.patel,Compliance,power-user,16,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00285,deepika.murphy,Operations,power-user,23,MEDIUM,42,1,Normal Users,0.82,🟡 Within 1 week — Schedule access review
+USR00286,ronald.lee,HR,power-user,51,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00287,nisha.ferrari,Support,user,0,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00288,arjun.dubois,Marketing,admin,24,CRITICAL,91,2,Normal Users,0.92,🔴 IMMEDIATE — Security manager + CISO notification required
+USR00289,rajesh.jang,Support,user,48,MEDIUM,43,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00290,thomas.sharma,Compliance,power-user,2,INFORMATIONAL,0,0,Normal Users,0.92,⚪ Log only — No action required
+USR00291,daniel.romano,Sales,power-user,48,MEDIUM,46,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00292,edward.esposito,Sales,admin,10,MEDIUM,45,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00293,gary.kang,Operations,user,11,MEDIUM,48,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00294,kenneth.colombo,Executive,user,11,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00295,james.sun,Security,service-account,53,MEDIUM,42,1,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00296,joseph.taylor,Security,user,59,LOW,18,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00297,sofia.schmidt,Security,power-user,13,MEDIUM,42,2,Normal Users,0.92,🟡 Within 1 week — Schedule access review
+USR00298,joseph.miller,Compliance,user,39,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
+USR00299,leila.lee,Finance,user,15,LOW,25,1,Normal Users,0.92,🟢 Next quarterly review — Add to monitoring
